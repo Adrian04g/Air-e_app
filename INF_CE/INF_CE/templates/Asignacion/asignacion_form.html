@@ -12,7 +12,8 @@
 {% endblock %}
 <!--Contenido-->
 {% block content %}
-<div class="col-md-6">
+<center>
+<div class="col-md-4j">
     <form method="post" action="">
         <h3>El proyecto va a ser generado por <span style="color: rgb(65, 135, 44);">{{user.first_name}} {{user.last_name}}</span></h3>
         {% csrf_token %}
@@ -24,6 +25,7 @@
         <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
     </form>
 </div>
+</center>
 <div class="col-md-6">
     <!-- Espacio para contenido adicional -->
 </div>
