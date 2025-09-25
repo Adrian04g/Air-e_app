@@ -56,7 +56,7 @@ class Proyectos(models.Model):
     fecha_fin = models.DateField(null=True, blank=True)
     fecha_radicacion = models.DateField(null=True, blank=True)
     fecha_revision = models.DateField(null=True, blank=True)
-    fecha_entrega = models.DateField(null=True, blank=True)
+    fecha_entrega = models.DateField(null=True, blank=True, auto_now_add=True)
     cableoperador = models.ForeignKey(Cableoperadores, on_delete=models.CASCADE,verbose_name="Cableoperador")
     estado_ingreso = models.CharField(max_length=100, choices=ESTADO, default='En_proceso', verbose_name="Registro de estado del proyecto", null=True, blank=True)
     descripcion = models.TextField(max_length=1000, null=True, blank=True)
