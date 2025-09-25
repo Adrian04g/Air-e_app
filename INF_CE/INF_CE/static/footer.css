@@ -1,0 +1,40 @@
+.footer {
+    color: #f0f0f0;
+    padding: 25px 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: auto; /* Para empujar el footer al final de la página */
+}
+
+.footer .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+}
+
+.footer-logo {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.footer-text {
+    font-size: 0.9em;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto 15px auto;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.footer-bottom {
+    padding-top: 15px;
+    border-top: 1px solid #444;
+    font-size: 0.8em;
+}

@@ -1,0 +1,88 @@
+body {
+    background-image: url('mantenimiento.png');
+    /* Carga la imagen de fondo */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    background-size: cover;
+    /* Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center center;
+    /* Centra la imagen en la página */
+
+    /* Mantenemos estos estilos para que el contenido (el formulario) se mantenga centrado */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-form-container {
+    background-color: rgba(24, 177, 238, 0.8);
+    /* El mismo color azul, pero con 80% de opacidad */
+
+}
+
+.codigo-error {
+    position: absolute;
+    /* <-- Posiciona el elemento */
+    top: 50px;
+    /* Distancia desde la parte superior */
+    left: 50px;
+    /* Distancia desde la parte izquierda */
+    font-size: 8em;
+    /* <-- Tamaño del número */
+    font-weight: bold;
+    color: rgba(13, 173, 194, 0.8);
+    /* Blanco semitransparente */
+    text-shadow: 4px 4px 8px rgba(126, 230, 238, 0.7);
+    /* Sombra para que destaque */
+}
+
+.btn-volver-inicio {
+    display: inline-block;
+    /* Permite aplicar padding y margin */
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    /* Elimina el subrayado del enlace */
+    color: #0f77d8;
+    /* Color del texto */
+    background-color: #007bff;
+    /* Color de fondo del botón */
+    border: 1px solid #007bff;
+    /* Borde del mismo color */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    transition: background-color 0.3s ease;
+    /* Transición suave para el hover */
+}
+
+/* Estilo para cuando el cursor pasa por encima */
+.btn-volver-inicio:hover {
+    background-color: #1c2ae9;
+    /* Un azul más oscuro */
+    border-color: #1353dd;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #212222, #b3f6f8, #121213, #1e1f1f);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}

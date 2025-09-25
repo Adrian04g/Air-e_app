@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'Mod_Admin.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'logo-aire-intervenida.png' %}">
+    {% block Title_head %}
+    {% endblock %}
+</head>
+<body>
+    <!--Header-->
+    <div class="top-bar bg-info border-bottom p-2">
+        <button class="btn btn-success sidebar-toggle-btn" id="toggleSidebar">☰</button>
+        <a href="{% url 'login:home' %}"><img src="{% static 'aire.png' %}" style="height: 40px; width: auto; float: right;" alt="Logo de AIR-E" class="logo-aire"></a>
+        {% block title %}
+        {% endblock %}
+    </div>
+    <!--End of header-->
+    <!--Barra de navegacion-->
+    <div class="main-wrapper d-flex" style="min-height: 100vh;">
+        <nav id="sidebar" class="sidebar sidebar-collapsed" style="background-color: #0f62fc; color: #000;">
+            <!-- Aquí va el bloque de menú que te generé -->
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a href="{% url 'login:home' %}">
+                        <span class="sidebar-icon">🏠</span>
+                        <span class="sidebar-text text-white">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'asignacion:AsignacionList' %}">
+                        <span class="sidebar-icon">🗂️</span>
+                        <span class="sidebar-text text-white">Asignados</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'asignacion:AsignacionCreate' %}">
+                        <span class="sidebar-icon">⚙️</span>
+                        <span class="sidebar-text text-white">Crear Asignación</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'indexapp:lista_proyectos' %}">
+                        <span class="sidebar-icon">📋</span>
+                        <span class="sidebar-text text-white">Lista de Proyectos</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'indexapp:crear_proyecto' %}">
+                        <span class="sidebar-icon">⚙️</span>
+                        <span class="sidebar-text text-white">Crear Proyecto</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="{% url 'facturacion:lista_facturacion' %}">
+                        <span class="sidebar-icon">⚙️</span>
+                        <span class="sidebar-text text-white">Facturacion</span>
+                    </a>
+                </li><br><br>
+                <li class="nav-item mb-2">
+                        {% if user.is_authenticated %}
+                            <span class="sidebar-text text-white">Usuario: </span>
+                            <span class="sidebar-text text-white">{{ user.username }}</span><br>
+                        {% endif %}
+                        <form action="{% url 'login:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="sidebar-text text-white bg-secondary"><span class="sidebar-icon">🚪</span>Cerrar sesión</button>
+                        </form>
+                    </a>
+                </li>   
+            </ul>
+        </nav>
+        <!--Fin de barra de navegacion-->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+            <main class="content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+        <!--Pie de pagina-->
+        {% include 'partials/footer.html' %}
+        <!--Fin de pie de pagina-->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'script.js' %}"></script>
+</html>

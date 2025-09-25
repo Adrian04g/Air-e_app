@@ -1,0 +1,33 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Asignacion</title>
+{% endblock %}
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Asignacion</span>
+{% endblock %}
+<!--Contenido-->
+{% block content %}
+<div class="col-md-6">
+    <form method="post" action="">
+        <h3>El proyecto va a ser generado por <span style="color: rgb(65, 135, 44);">{{user.first_name}} {{user.last_name}}</span></h3>
+        {% csrf_token %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--para que salga la barra de busqueda-->
+        {{ form.media }} <!-- ¡Esta línea es crucial! -->
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
+    </form>
+</div>
+<div class="col-md-6">
+    <!-- Espacio para contenido adicional -->
+</div>
+{% endblock %}
+<!--Fin del contenido de la interfaz asignacion-->
+
+<!--Este es el contenido de esta sesion llamada administrador-->

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'error.css' %}">
+    <title>Página no encontrada</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'logo-aire-intervenida.png' %}">
+</head>
+<body>
+    <h1 class="gradient-text">¡Ups! Página no encontrada</h1>
+    <p class="gradient-text">Lo sentimos, la página que buscas no existe. </p>
+    <div class="codigo-error gradient-text">404</div>
+  <div class="contenido-principal">
+     <a href="/" class="btn-volver-inicio gradient-text">Volver a la página de inicio</a>
+  </div>
+  <p class="descripcion background-color-negro gradient-text">Somos una empresa dedicada a la distribución de energía eléctrica, comprometida con la calidad y el servicio a nuestros clientes.</p>
+</body>
+</html>

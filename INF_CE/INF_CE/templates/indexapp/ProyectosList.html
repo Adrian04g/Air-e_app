@@ -1,0 +1,211 @@
+<!-- Versión mejorada del template con cards para móviles -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Lista de proyectos</title>
+<link rel="stylesheet" href="{% static 'ProyectosList.css' %}">
+{% endblock %}
+
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Lista de proyectos</span>
+{% endblock %}
+
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+<div class="col-12">
+    <!-- Sección de filtros -->
+    <div class="filter-section">
+        <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
+            <div class="flex-grow-1">
+                <strong>Filtrar por cableoperador:</strong>
+                <input type="text" 
+                       name="cableoperadorf" 
+                       id="cableoperadorf" 
+                       class="filter-input"
+                       placeholder="Buscar cableoperador..." 
+                       value="{{ request.GET.cableoperadorf|default:'' }}">
+            </div>
+            <button type="submit" class="filter-btn">Aplicar Filtro</button>
+        </form>
+    </div>
+
+    <!-- Vista de tabla para desktop -->
+    <div class="table-container d-none d-md-block">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Proyecto</th>
+                    <th scope="col" class="col-medium">Responsable</th>
+                    <th scope="col" class="col-medium">PRST</th>
+                    <th scope="col" class="col-medium">Tipo de Ingreso</th>
+                    <th scope="col" class="col-medium">Estado del proyecto</th>
+                    <th scope="col" class="col-wide">Fecha Radicación</th>
+                    <th scope="col" class="col-wide">Fecha Inicio</th>
+                    <th scope="col" class="col-wide">Fecha Fin</th>
+                    <th scope="col" class="col-wide">Fecha Revisión</th>
+                    <th scope="col" class="col-wide">Fecha Entrega</th>
+                    <th scope="col" class="col-medium">Departamento</th>
+                    <th scope="col" class="col-medium">Municipio</th>
+                    <th scope="col" class="col-narrow">Alt 8</th>
+                    <th scope="col" class="col-narrow">Alt 9</th>
+                    <th scope="col" class="col-narrow">Alt 10</th>
+                    <th scope="col" class="col-narrow">Alt 11</th>
+                    <th scope="col" class="col-narrow">Alt 12</th>
+                    <th scope="col" class="col-narrow">Alt 14</th>
+                    <th scope="col" class="col-narrow">Alt 16</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for object in object_list %}
+                    <tr>
+                        <td><strong>{{ object.nombre }}</strong></td>
+                        <td>{{ object.responsable }}</td>
+                        <td>{{ object.cableoperador }}</td>
+                        <td>{{ object.TipoIngreso }}</td>
+                        <td>{{ object.estado_ingreso }}</td>
+                        <td>{{ object.fecha_radicacion|date:"d/m/Y"|default:"N/A" }}</td>
+                        <td>{{ object.fecha_inicio|date:"d/m/Y"|default:"N/A" }}</td>
+                        <td>{{ object.fecha_fin|date:"d/m/Y"|default:"N/A" }}</td>
+                        <td>{{ object.fecha_revision|date:"d/m/Y"|default:"N/A" }}</td>
+                        <td>{{ object.fecha_entrega|date:"d/m/Y"|default:"N/A" }}</td>
+                        <td>{{ object.departamento }}</td>
+                        <td>{{ object.municipio }}</td>
+                        <td>{{ object.tipo8 }}</td>
+                        <td>{{ object.tipo9 }}</td>
+                        <td>{{ object.tipo10 }}</td>
+                        <td>{{ object.tipo11 }}</td>
+                        <td>{{ object.tipo12 }}</td>
+                        <td>{{ object.tipo14 }}</td>
+                        <td>{{ object.tipo16 }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="18" class="text-center py-4">
+                            <em>No se encontraron proyectos</em>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="scroll-indicator d-md-block">
+            💡 <em>Desliza horizontalmente para ver todas las columnas</em>
+        </div>
+    </div>
+
+    <!-- Vista de cards para móviles -->
+    <div class="d-block d-md-none">
+    {% for object in object_list %}
+        <div class="card mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h6 class="mb-0">
+                    <strong>{{ object.nombre }}</strong>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <small class="text-muted">Responsable:</small><br>
+                        <span class="fw-semibold">{{ object.responsable }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">PRST:</small><br>
+                        <span class="fw-semibold">{{ object.cableoperador }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Tipo Ingreso:</small><br>
+                        <span>{{ object.TipoIngreso }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Estado del proyecto:</small><br>
+                        <span>{{ object.estado_ingreso }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Departamento:</small><br>
+                        <span>{{ object.departamento }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Municipio:</small><br>
+                        <span>{{ object.municipio }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Fecha Inicio:</small><br>
+                        <span>{{ object.fecha_inicio|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                </div>
+                
+                <!-- Botón para expandir detalles -->
+                <div class="mt-2">
+                    <a class="btn btn-sm btn-outline-secondary collapse-toggle" 
+                       data-bs-toggle="collapse" 
+                       href="#detalles{{ forloop.counter }}" 
+                       role="button"
+                       aria-expanded="false">
+                        <span class="btn-text">Ver más detalles</span> 
+                        <span class="btn-icon">▼</span>
+                    </a>
+                </div>
+                <section id="detalles{{ forloop.counter }}" class="collapse">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <small class="text-muted">F. Radicación:</small><br>
+                            <span>{{ object.fecha_radicacion|date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">F. Fin:</small><br>
+                            <span>{{ object.fecha_fin|date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">F. Revisión:</small><br>
+                            <span>{{ object.fecha_revision|date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">F. Entrega:</small><br>
+                            <span>{{ object.fecha_entrega|date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Postes en una tabla compacta -->
+                    <div class="mt-2">
+                        <small class="text-muted">Cantidad de Postes:</small>
+                        <table class="table-sm table-bordered mt-1">
+                            <thead>
+                                <tr class="table-light">
+                                    <th>Alt 8</th>
+                                    <th>Alt 9</th>
+                                    <th>Alt 10</th>
+                                    <th>Alt 11</th>
+                                    <th>Alt 12</th>
+                                    <th>Alt 14</th>
+                                    <th>Alt 16</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ object.tipo8 }}</td>
+                                    <td>{{ object.tipo9 }}</td>
+                                    <td>{{ object.tipo10 }}</td>
+                                    <td>{{ object.tipo11 }}</td>
+                                    <td>{{ object.tipo12 }}</td>
+                                    <td>{{ object.tipo14 }}</td>
+                                    <td>{{ object.tipo16 }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    {% empty %}
+        <div class="card">
+            <div class="card-body text-center">
+                <em>No se encontraron proyectos</em>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

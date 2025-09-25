@@ -1,0 +1,27 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Inicio</title>
+{% endblock %}
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Inicio</span>
+{% endblock %}
+
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+<div class="col-md-6">
+     <center>
+    <h1>Bienvenido a AIR-E {{ user.username }}</h1>
+    </center>
+ <center>
+    <img src="{% static 'bienvenido.png' %}" class="img-fluid" alt="">
+     </center>
+</div>
+<div class="col-md-6">
+    <!-- Espacio para contenido adicional -->
+</div>
+{% endblock %}

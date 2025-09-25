@@ -1,0 +1,93 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Asignacion</title>
+{% endblock %}
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Asignacion</span>
+<link rel="stylesheet" href="{% static 'ProyectosList.css' %}">
+{% endblock %}
+<!--Contenido-->
+{% block content %}
+<div class="filter-section col-11 d-none d-md-block">
+    <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
+        <div class="col-md-12"></div>
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-medium">Nombre del Proyecto</th>
+                        <th scope="col" class="col-medium">Nombre Ingeniero</th>
+                        <th scope="col" class="col-medium">Persona Asignada</th>
+                        <th scope="col" class="col-medium">Estado del Proyecto</th>
+                        <th scope="col" class="col-medium">Fecha asignacion</th>
+                        <th scope="col" class="col-medium">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <!-- Aqui va el for para mostrar las facturas-->
+                        {% for object in object_list %}
+                            <tr>
+                                <td>{{ object.nombre_proyecto }}</td>
+                                <td>{{ object.nombre_ingeniero }}</td>
+                                <td>{{ object.persona_asignada }}</td>
+                                <td>{{ object.estado }}</td>
+                                <td>{{ object.fecha_asignacion }}</td>
+                                <td>{{ object.observaciones }}</td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+<!--Fin del contenido de la interfaz asignacion-->
+
+<!-- Vista de cards para móviles -->
+    <div class="d-block d-md-none">
+    {% for object in object_list %}
+        <div class="card mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h6 class="mb-0">
+                    <strong>{{ object.nombre_proyecto }}</strong>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <small class="text-muted">Ingeniero:</small><br>
+                        <span class="fw-semibold">{{ object.nombre_ingeniero }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Persona Asignada:</small><br>
+                        <span class="fw-semibold">{{ object.persona_asignada }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Estado:</small><br>
+                        <span>{{ object.estado }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Fecha Asignacion:</small><br>
+                        <span>{{ object.fecha_asignacion }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Observaciones:</small><br>
+                        <span>{{ object.observaciones }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="card">
+            <div class="card-body text-center">
+                <em>No se encontraron proyectos</em>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<div class="col-1"></div>
+{% endblock %}

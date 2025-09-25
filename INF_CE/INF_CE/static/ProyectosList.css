@@ -1,0 +1,262 @@
+/* Contenedor de tabla responsive */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    background: white;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    max-width: 100%;
+}
+
+/* Tabla con ancho mínimo para scroll */
+.table {
+    margin-bottom: 0;
+    min-width: 1400px; /* Ancho mínimo que fuerza el scroll horizontal */
+    font-size: 0.875rem;
+}
+
+/* Headers de tabla mejorados */
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 2px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Celdas de tabla */
+.table td {
+    font-size: 0.875rem;
+    padding: 0.75rem 0.5rem;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Primera columna fija (opcional) */
+.table th:first-child,
+.table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: white;
+    z-index: 11;
+    border-right: 2px solid #dee2e6;
+    font-weight: 600;
+    text-align: left;
+}
+
+.table th:first-child {
+    background-color: #f8f9fa;
+}
+
+/* Columnas específicas más estrechas */
+.col-narrow {
+    width: 60px;
+    min-width: 60px;
+}
+
+.col-medium {
+    width: 100px;
+    min-width: 100px;
+}
+
+.col-wide {
+    width: 120px;
+    min-width: 120px;
+}
+
+/* Sección de filtros mejorada */
+.filter-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.filter-section strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #495057;
+}
+
+.filter-input {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    margin-right: 0.5rem;
+    min-width: 200px;
+}
+
+.filter-btn {
+    background-color: #0f62fc;
+    color: white;
+    border: 1px solid #0f62fc;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #0d52cc;
+}
+
+/* Filas alternadas y hover */
+.table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e3f2fd;
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    
+    
+    /* Tabla más compacta en móviles */
+    .table-container {
+        font-size: 0.75rem;
+        margin: 10px 0;
+        border-radius: 0.25rem;
+    }
+    
+    .table {
+        min-width: 1000px; /* Reducir el ancho mínimo para móviles */
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.4rem 0.2rem;
+        font-size: 0.7rem;
+    }
+    
+    /* Columnas más estrechas en móviles */
+    .col-narrow {
+        width: 40px;
+        min-width: 40px;
+    }
+    
+    .col-medium {
+        width: 70px;
+        min-width: 70px;
+    }
+    
+    .col-wide {
+        width: 90px;
+        min-width: 90px;
+    }
+    
+    /* Filtros más compactos */
+    .filter-section {
+        padding: 1rem;
+    }
+    
+    .filter-input {
+        min-width: 120px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.875rem;
+    }
+    
+    .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Hacer la tabla más legible en móviles */
+    .table th:first-child,
+    .table td:first-child {
+        min-width: 100px;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Scroll indicator más prominente */
+    .scroll-indicator {
+        font-size: 0.8rem;
+        background-color: #fff3cd;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid #ffeaa7;
+        margin-top: 1rem;
+    }
+    .fw-semibold {
+        font-weight: 600;
+    }
+    .table-sm th,
+    .table-sm td {
+        padding: 0.25rem;
+        font-size: 0.75rem;
+        text-align: center;
+    }
+    .card-header {
+        border-radius: 0.5rem 0.5rem 0 0 !important;
+    }
+    .card {
+        border-radius: 0.5rem;
+        border: 1px solid rgba(0,0,0,0.125);
+    }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .table {
+        min-width: 800px;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.3rem 0.15rem;
+        font-size: 0.65rem;
+    }
+    
+    .col-narrow {
+        width: 35px;
+        min-width: 35px;
+    }
+    
+    .col-medium {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .col-wide {
+        width: 80px;
+        min-width: 80px;
+    }
+    
+    .filter-section {
+        padding: 0.75rem;
+    }
+    
+    .filter-section strong {
+        font-size: 0.875rem;
+    }
+    
+    .filter-input {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    
+    .filter-btn {
+        width: 100%;
+    }
+    
+}

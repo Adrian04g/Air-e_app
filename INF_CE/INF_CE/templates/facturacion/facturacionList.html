@@ -1,0 +1,223 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+
+{% load static %} <!-- Se cargan los script e imagenes -->
+
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Facturacion</span>
+<link rel="stylesheet" href="{% static 'ProyectosList.css' %}">
+{% endblock %}
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Facturacion</title>
+{% endblock %}
+
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+ <div class="table-container d-none d-md-block">
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-medium">Numero de factura</th>
+                        <th scope="col" class="col-medium">Responsable</th>
+                        <th scope="col" class="col-medium">Clasificacion</th>
+                        <th scope="col" class="col-medium">Mes de uso</th>
+                        <th scope="col" class="col-medium">Fecha factura</th>
+                        <th scope="col" class="col-medium">Nombre del PRST</th>
+                        <th scope="col" class="col-medium">Valor facturado(IVA)</th>
+                        <th scope="col" class="col-medium">Valor facturado en millones</th>
+                        <th scope="col" class="col-medium">Fecha de vencimiento</th>
+                        <th scope="col" class="col-medium">Periodo de vencimiento</th>
+                        <th scope="col" class="col-medium">Factura aceptada</th>
+                        <th scope="col" class="col-medium">Factura vencida</th>
+                        <th scope="col" class="col-medium">Factura en proceso ante CRC</th>
+                        <th scope="col" class="col-medium">Valor pagado</th>
+                        <th scope="col" class="col-medium">Fecha de pago</th>
+                        <th scope="col" class="col-medium">Periodo de pago</th>
+                        <th scope="col" class="col-medium">Fecha de aplicacion</th>
+                        <th scope="col" class="col-medium">Fecha de confirmacion</th>
+                        <th scope="col" class="col-medium">Valor adeudado</th>
+                        <th scope="col" class="col-medium">¿Pagado?</th>
+                        <th scope="col" class="col-medium">Observaciones</th>
+                        <th scope="col" class="col-medium">¿Se factura interes?</th>
+                        <th scope="col" class="col-medium">¿interes grabado con iva?</th>
+                        <th scope="col" class="col-medium">¿Indicador de recaudo?</th>
+                        <th scope="col" class="col-medium">Acuerdo de pago</th>
+                        <th scope="col" class="col-medium">Fecha acuerdo de pago</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aqui va el for para mostrar las facturas-->
+                        {% for object in object_list %}
+                            <tr>
+                                <td>{{ object.Num_fact }}</td>
+                                <td>{{ object.Responsable }}</td>
+                                <td>{{ object.Clasificacion }}</td>
+                                <td>{{ object.Mes_uso }}</td>
+                                <td>{{ object.Fecha_fact }}</td>
+                                <td>{{ object.Nombre_prst }}</td>
+                                <td>{{ object.Valor_iva }}</td>
+                                <td>{{ object.Valor_iva_millones }}</td>
+                                <td>{{ object.Fecha_venc }}</td>
+                                <td>{{ object.Periodo_venc }}</td>
+                                <td>{{ object.Factura_aceptada }}</td>
+                                <td>{{ object.Factura_vencida }}</td>
+                                <td>{{ object.Factura_CRC }}</td>
+                                <td>{{ object.Valor_pagado }}</td>
+                                <td>{{ object.Fecha_pago }}</td>
+                                <td>{{ object.Periodo_pago }}</td>
+                                <td>{{ object.Fecha_aplicacion }}</td>
+                                <td>{{ object.Fecha_confirmacion }}</td>
+                                <td>{{ object.Valor_deuda }}</td>
+                                <td>{{ object.Pagado }}</td>
+                                <td>{{ object.Observciones }}</td>
+                                <td>{{ object.Interes_iva }}</td>
+                                <td>{{ object.Indicador_recaudo }}</td>
+                                <td>{{ object.Acuerdo_pago }}</td>
+                                <td>{{ object.Fecha_acuerdoP }}</td>
+                                <td>{{ object.Fecha_pago_AP }}</td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+<!--Fin del contenido de la interfaz asignacion-->
+
+<!-- Vista de cards para móviles -->
+    <div class="d-block d-md-none">
+    {% for object in object_list %}
+        <div class="card mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h6 class="mb-0">ID 
+                    <strong>{{ object.Num_fact }}</strong>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-4">
+                        <small class="text-muted">Responsable:</small><br>
+                        <span class="fw-semibold">{{ object.Responsable }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Clasificacion:</small><br>
+                        <span class="fw-semibold">{{ object.Clasificacion }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Mes_uso:</small><br>
+                        <span>{{ object.Mes_uso }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Fecha_fact:</small><br>
+                        <span>{{ object.Fecha_fact }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Nombre_prst:</small><br>
+                        <span>{{ object.Nombre_prst }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Valor_iva :</small><br>
+                        <span>{{ object.Valor_iva  }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Valor_iva_millones :</small><br>
+                        <span>{{ object.Valor_iva_millones  }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Fecha_venc :</small><br>
+                        <span>{{ object.Fecha_venc}}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Periodo_venc :</small><br>
+                        <span>{{ object.Periodo_venc }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Factura_aceptada  :</small><br>
+                        <span>{{ object.Factura_aceptada   }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Factura_vencida:</small><br>
+                        <span>{{ object.Factura_vencida  }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Factura_CRC:</small><br>
+                        <span>{{ object.Factura_CRC  }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Valor_pagado:</small><br>
+                        <span>{{ object.Valor_pagado }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">Fecha_pago:</small><br>
+                        <span>{{ object.Fecha_pago  }}</span>
+                    </div>
+                </div>
+                <!-- Botón para expandir detalles -->
+                <div class="mt-2">
+                    <a class="btn btn-sm btn-outline-secondary collapse-toggle" 
+                       data-bs-toggle="collapse" 
+                       href="#detalles{{ forloop.counter }}" 
+                       role="button"
+                       aria-expanded="false">
+                        <span class="btn-text">Ver más detalles</span> 
+                        <span class="btn-icon">▼</span>
+                    </a>
+                </div>
+                <section id="detalles{{ forloop.counter }}" class="collapse">
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <small class="text-muted">F. Periodo_pago :</small><br>
+                            <span>{{ object.Periodo_pago |date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-muted">F. Fecha_aplicacion:</small><br>
+                            <span>{{ object.Fecha_aplicacion |date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-muted">F. Fecha_confirmacion:</small><br>
+                            <span>{{ object.Fecha_confirmacion|date:"d/m/Y"|default:"N/A" }}</span>
+                        </div>
+                        <div class="col-4">
+                            <small class="text-muted">F. Pagado:</small><br>
+                            <span>{{ object.Pagado|default:"N/A" }}</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Observciones:</small><br>
+                        <span>{{ object.Observciones|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Interes_iva:</small><br>
+                        <span>{{ object.Interes_iva|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Indicador_recaudo:</small><br>
+                        <span>{{ object.Indicador_recaudo|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Acuerdo_pago:</small><br>
+                        <span>{{ object.Acuerdo_pago|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Fecha_acuerdoP:</small><br>
+                        <span>{{ object.Fecha_acuerdoP|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-4">
+                        <small class="text-muted">F.Fecha_pago_AP:</small><br>
+                        <span>{{ object.Fecha_pago_AP|date:"d/m/Y"|default:"N/A" }}</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    {% empty %}
+        <div class="card">
+            <div class="card-body text-center">
+                <em>No se encontraron proyectos</em>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+<div class="col-1"></div>
+{% endblock %}
