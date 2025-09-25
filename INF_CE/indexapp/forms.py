@@ -64,10 +64,6 @@ class ProyectosModelForm(forms.ModelForm):
                 'type': 'date',
                 'class': 'form-control'
             }),
-            'fecha_entrega': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'form-control'
-            }),
             'tipo8': forms.NumberInput(attrs={
                 'class': 'InputNumero'
             }),

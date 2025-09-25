@@ -22,7 +22,7 @@ class Asignacion_proyectos(models.Model):
     # Cambiamos persona_asignada a un ForeignKey que apunta al modelo User
     persona_asignada = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     estado = models.CharField(max_length=100, verbose_name="Estado del Proyecto", default='En_progreso')
-    fecha_asignacion = models.DateField(null=True, blank=True)
+    fecha_asignacion = models.DateField(null=True, blank=True, auto_now_add=True)
     observaciones = models.TextField(max_length=1000, null=True, blank=True)
     class Meta:
         db_table = "asignacion_proyectos"

@@ -35,13 +35,8 @@ class AsignacionProyectosForm(forms.ModelForm):
 
     class Meta:
         model = Asignacion_proyectos
-        fields = 'nombre_proyecto','nombre_ingeniero', 'persona_asignada', 'fecha_asignacion', 'observaciones'
+        fields = 'nombre_proyecto','nombre_ingeniero', 'persona_asignada', 'observaciones'
         widgets = {
-            'fecha_asignacion': forms.DateInput(attrs={
-                'type': 'date',
-                'class': 'form-control',
-                
-            }),
             'observaciones': forms.Textarea(attrs={
                 'class': 'form-control',
                 'rows': 4,
