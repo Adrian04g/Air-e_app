@@ -1,0 +1,28 @@
+<!-- Versión mejorada del template con cards para móviles -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | PRST</title>
+<link rel="stylesheet" href="{% static 'ProyectosList.css' %}">
+{% endblock %}
+
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Lista de cableoperadores</span>
+{% endblock %}
+
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+<div class="col-12">
+
+    <!-- Vista de tabla para desktop -->
+    <div class="table-container d-none d-md-block">
+        <div class="table-row">
+            <div class="table-cell">{{ object.nombre }}</div>
+            <div class="table-cell">{{ object.nombre_largo }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
