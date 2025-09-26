@@ -260,3 +260,40 @@
     }
     
 }
+.contenedor-formulario {
+  /* ... otros estilos ... */
+  
+  /* Centra elementos de línea (como texto y botones) horizontalmente */
+  text-align: center; 
+}
+
+/* Opcional: Asegura que el botón se muestre como un elemento en línea */
+.btn-primary {
+  display: inline-block;
+  /* ... otros estilos del botón ... */
+}
+.btn-primary {
+  /* Hace que el botón ocupe una línea completa */
+  display: block; 
+  
+  /* Centra el elemento en el espacio horizontal disponible */
+  margin: 20px auto 0; /* 20px arriba, auto izquierda/derecha, 0 abajo */
+  
+  /* Asegura que el botón no se estire al 100% del ancho del formulario */
+  width: auto; 
+  
+  /* ... otros estilos del botón ... */
+}
+/* Intenta anular cualquier estilo que pueda estar ocultando el aspecto nativo */
+select {
+    /* Muestra la flecha nativa */
+    -webkit-appearance: menulist; 
+    -moz-appearance: menulist;
+    appearance: menulist;
+    
+    /* Asegura que haya espacio para la flecha */
+    padding-right: 30px; 
+}
+
+/* Si tu CSS está ocultando la flecha con 'none' */
+/* Asegúrate de que no tienes: select { appearance: none; } */

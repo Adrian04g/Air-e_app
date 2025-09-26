@@ -173,7 +173,7 @@ body {
      width: 60px; 
 }
 .admin {
-  font-family: 'Verdana', serif;
+  font-family: 'ARIA', serif;
   font-size: 30px;
   font-weight: normal;
 }
@@ -235,4 +235,33 @@ body {
     .collapse {
         transition: height 0.35s ease;
     }
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+.titulo-asignacion {
+  font-family: 'Roboto', sans-serif;
+}
+/* Para el título "Asignacion" */
+.admin {
+  font-size: 3rem; /* Cambia este valor al tamaño que prefieras */
+  font-weight: bold; /* Opcional: para que se vea más grueso */
+}
+/* Estilos para el título "Asignacion" */
+.admin {
+  font-family: 'Roboto', sans-serif; /* Un tipo de letra más moderno */
+  font-size: 2.5rem; /* Un tamaño de fuente grande y responsivo */
+  font-weight: 700; /* Hace que el texto sea más grueso */
+  color: #333; /* Un color de texto más oscuro */
+  letter-spacing: 1px; /* Espaciado entre letras */
+}
+.admin {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #27f315; /* Un color verde brillante */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra que le da profundidad */
+}
+.titulo-con-animacion {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #007bff;
+  transition: transform 0.3s ease-in-out; /* Transición para un efecto suave */
 }
