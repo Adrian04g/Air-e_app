@@ -1,0 +1,50 @@
+<!-- Versión mejorada del template con cards para móviles -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | PRST</title>
+<link rel="stylesheet" href="{% static 'ProyectosList.css' %}">
+{% endblock %}
+
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Lista de cableoperadores</span>
+{% endblock %}
+
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+<div class="col-12">
+    <!-- Sección de filtros -->
+    <div class="filter-section">
+        <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
+            <div class="flex-grow-1">
+                <strong>Filtrar por cableoperador:</strong>
+                <input type="text" 
+                       name="cableoperadorf" 
+                       id="cableoperadorf" 
+                       class="filter-input"
+                       placeholder="Buscar cableoperador..." 
+                       value="{{ request.GET.cableoperadorf|default:'' }}">
+            </div>
+            <button type="submit" class="filter-btn">Aplicar Filtro</button>
+        </form>
+    </div>
+
+    <!-- Vista de tabla para desktop -->
+    <div class="table-container">
+        {% for object in object_list %}
+            <div class="table-row">
+                <div class="table-cell">{{ object.nombre }}</div>
+                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">
+                    {{ object.nombre }}
+                </a>
+            </div>
+        {% empty %}
+                <div colspan="18" class="text-center py-4">
+                    <em>No se encontraron cableoperadores</em>
+                </div>
+        {% endfor %}
+    </div>
+{% endblock %}
