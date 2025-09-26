@@ -72,7 +72,7 @@
                 </li><br><br>
                 <li class="nav-item mb-2">
                         {% if user.is_authenticated %}
-                            <span class="sidebar-text text-white">span class="sidebar-icon">👨‍💼Usuario: </span>
+                            <span class="sidebar-text text-white">👨‍💼Usuario: </span>
                             <span class="sidebar-text text-white">{{ user.username }}</span><br>
                         {% endif %}
                         <form action="{% url 'login:logout' %}" method="post">

@@ -297,3 +297,8 @@ select {
 
 /* Si tu CSS está ocultando la flecha con 'none' */
 /* Asegúrate de que no tienes: select { appearance: none; } */
+/* Colocar en ProyectosList.css u otro archivo .css */
+.contenedor-tabla-scroll {
+    overflow-x: auto;
+    width: 100%;
+}

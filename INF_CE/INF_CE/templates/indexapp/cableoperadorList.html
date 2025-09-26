@@ -33,15 +33,37 @@
     </div>
 
     <!-- Vista de tabla para desktop -->
-    <div class="table-container">
+    <div class="row">
         {% for object in object_list %}
-            <div class="table-row">
-                <div class="table-cell">{{ object.nombre }}</div>
-                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">
-                    {{ object.nombre }}
-                </a>
-            </div>
-        {% empty %}
+                <h2>{{ object.nombre }}</h2>
+                <div class="table-container d-none d-md-block">
+                    <table class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col" class="col-medium">Nombre largo</th>
+                                          <th scope="col" class="col-medium">Nit</th>
+                                          <th scope="col" class="col-medium">Pais</th>
+                                          <th scope="col" class="col-medium">Ciudad/municipio</th>
+                                          <th scope="col" class="col-medium">Codigo interno</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>{{ object.Num_fact }}</td>
+                                          <td>{{ object.Responsable }}</td>
+                                          <td>{{ object.Clasificacion }}</td>
+                                          <td>{{ object.Mes_uso }}</td>
+                                          <td>{{ object.Fecha_fact }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div>
+                                <button><a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">
+                                    ver mas 
+                                </a></button></div>
+                      </div>
+                </div>
+                {% empty %}
                 <div colspan="18" class="text-center py-4">
                     <em>No se encontraron cableoperadores</em>
                 </div>
