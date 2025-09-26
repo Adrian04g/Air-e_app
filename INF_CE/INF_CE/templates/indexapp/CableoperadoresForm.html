@@ -1,0 +1,31 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+{% load static %} <!-- Se cargan los script e imagenes -->
+
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>Air-e | Cargar Proyectos</title>
+{% endblock %}
+<!--Este es el titulo de la cabecera-->
+{% block title %}
+<span class="h2 align-middle ms-3 admin">Registrar Cableoperadores</span>
+{% endblock %}
+<!--Este es el contenido de esta sesion llamada administrador-->
+{% block content %}
+<!--Formulario para registrar cableoperadores-->
+<div class="container mt-4 col-4">
+    <h2>Registrar Nuevo Cableoperador</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--para que salga la barra de busqueda-->
+        {{ form.media }} <!-- ¡Esta línea es crucial! -->
+        <table>
+            {{ form.as_p }}
+        </table>
+        <center>
+        <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
+        </center>
+    </form>
+</div>
+<div class="col-6"></div>
+{% endblock %} 

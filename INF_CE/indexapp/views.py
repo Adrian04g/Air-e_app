@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from indexapp.forms import ProyectosModelForm
+from indexapp.forms import ProyectosModelForm, CableoperadoresModelForm
 from indexapp.models import Proyectos, Cableoperadores
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
@@ -18,6 +18,21 @@ class ProyectosListView(ListView):
             queryset = queryset.filter(cableoperador__nombre=cableoperador)
         return queryset.order_by('-fecha_radicacion')
 
+
+# 404
+def error(request):
+    return render(request, 'error.html')
+
+# vista del formulario de Proyectos
+class ProyectosCreateView(CreateView):
+    model = Proyectos
+    form_class = ProyectosModelForm
+    template_name = 'indexapp/ProyectosForm.html'
+    success_url = '/index/ProyectosForm.html'
+
+            
+# Clase de cableoperadores
+    
 class CableoperadoresListView(ListView):
     model = Cableoperadores
     template_name = 'indexapp/cableoperadorList.html'
@@ -31,18 +46,9 @@ def cableoperador(request, pk=None):
     if pk:
         cableoperador = Cableoperadores.objects.get(pk=pk)
         return render(request, 'indexapp/cableoperador.html', {'object': cableoperador})
-
-# 404
-def error(request):
-    return render(request, 'error.html')
-
-# vista del formulario de Proyectos
-class ProyectosCreateView(CreateView):
-    model = Proyectos
-    form_class = ProyectosModelForm
-    template_name = 'indexapp/ProyectosForm.html'
-    success_url = '/index/crear/'
-
-            
-
     
+class CableoperadoreCreateView(CreateView):
+    model = Cableoperadores
+    form_class = CableoperadoresModelForm
+    template_name = 'indexapp/CableoperadoresForm.html'
+    success_url = '/index/CableoperadoresForm.html'

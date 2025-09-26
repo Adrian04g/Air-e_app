@@ -95,3 +95,9 @@ class ProyectosModelForm(forms.ModelForm):
             self.fields['responsable'].queryset = grupo_brigadas.user_set.all().order_by('username')
         except Group.DoesNotExist:
             self.fields['responsable'].queryset = User.objects.none()
+
+class CableoperadoresModelForm(forms.ModelForm):
+    class Meta:
+        model = Cableoperadores
+        fields = '__all__'
+        
