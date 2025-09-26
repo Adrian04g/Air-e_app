@@ -8,4 +8,5 @@ urlpatterns = [
     path('list/', views.ProyectosListView.as_view(), name='lista_proyectos'),
     path('PRST/', views.CableoperadoresListView.as_view(), name='lista_cableoperadores'),
     path('PRST/<int:pk>/', views.cableoperador, name='detalle_cableoperador'),
+    path('PRST/crear/', views.CableoperadoreCreateView.as_view(), name='crear_cableoperador'),
 ]
