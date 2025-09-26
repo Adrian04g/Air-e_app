@@ -25,4 +25,60 @@
         </div>
     </div>
 </div>
+
+<!-- Vista de cards para móviles -->
+    <div class="d-block d-md-none">
+        <div class="card mb-3 shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h6 class="mb-0">
+                    <strong>{{ object.nombre }}</strong>
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <small class="text-muted">Representante:</small><br>
+                        <span class="fw-semibold">{{ object.Representante }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">NIT:</small><br>
+                        <span class="fw-semibold">{{ object.NIT }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Registro Tic:</small><br>
+                        <span>{{ object.RegistroTic }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Codigo interno:</small><br>
+                        <span>{{ object.CodigoInterno }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Pais:</small><br>
+                        <span>{{ object.pais }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Ciudad/Municipio:</small><br>
+                        <span>{{ object.ciudad }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Dirección:</small><br>
+                        <span>{{ object.direccion }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">F. Nombre largo:</small><br>
+                        <span>{{ object.nombre_largo }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Teléfono:</small><br>
+                        <span>{{ object.telefono }}</span>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Correo:</small><br>
+                        <span>{{ object.correo }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
