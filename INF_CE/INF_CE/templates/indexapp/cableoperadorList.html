@@ -35,35 +35,32 @@
     <!-- Vista de tabla para desktop -->
     <div class="row">
         {% for object in object_list %}
-                <h2>{{ object.nombre }}</h2>
-                <div class="table-container d-none d-md-block">
-                    <table class="table table-striped">
-                                  <thead>
-                                      <tr>
-                                          <th scope="col" class="col-medium">Nombre largo</th>
-                                          <th scope="col" class="col-medium">Nit</th>
-                                          <th scope="col" class="col-medium">Pais</th>
-                                          <th scope="col" class="col-medium">Ciudad/municipio</th>
-                                          <th scope="col" class="col-medium">Codigo interno</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td>{{ object.Num_fact }}</td>
-                                          <td>{{ object.Responsable }}</td>
-                                          <td>{{ object.Clasificacion }}</td>
-                                          <td>{{ object.Mes_uso }}</td>
-                                          <td>{{ object.Fecha_fact }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div>
-                                <button><a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">
-                                    ver mas 
-                                </a></button></div>
-                      </div>
+        <div class="col-sm-6 bg-info border">
+            <h2>{{ object.nombre }}</h2>
+            <center>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Nombre largo</h3>
+                    <h3>Nit<h3>
+                    <h3>Pais</h3>
+                    <h3>Ciudad/municipio</h3>
+                    <h3>Codigo interno</h3>
                 </div>
-                {% empty %}
+                    <div class="col-sm-6">
+                        <h3>{{ object.nombre_largo }}</h3>
+                        <h3>{{ object.NIT }}</h3>
+                        <h3>{{ object.pais }}</h3>
+                        <h3>{{ object.ciudad }}</h3>
+                        <h3>{{ object.CodigoInterno }}</h3>
+                    </div>         
+                <div>
+                <button>
+                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">ver mas</a>
+                </button>
+            </div>
+                    </center>
+        </div>
+        {% empty %}
                 <div colspan="18" class="text-center py-4">
                     <em>No se encontraron cableoperadores</em>
                 </div>

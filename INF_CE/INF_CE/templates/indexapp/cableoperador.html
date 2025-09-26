@@ -18,14 +18,25 @@
 <div class="col-12">
 
     <!-- Vista de tabla para desktop -->
+     <center>
     <div class="table-container d-none d-md-block">
         <div class="table-row">
-            <div class="table-cell">{{ object.nombre }}</div>
-            <div class="table-cell">{{ object.nombre_largo }}</div>
+           <h2 <div class="table-cell">{{ object.nombre }}</div></h2>
+           <small class="text-muted">{{ object.NIT }}</small><br>
+           <small class="text-muted">{{ object.nombre_largo }}</small><br>
+           <h1 class="text-muted">{{ object.RegistroTic }}</h1><br>
+           <small class="text-muted">{{ object.CodigoInterno }}</small><br>
+           <small class="text-muted">{{ object.pais }}</small><br>
+           <small class="text-muted">{{ object.ciudad }}</small><br>
+           <small class="text-muted">{{ object.direccion }}</small><br>
+           <small class="text-muted">{{ object.Representante }}</small><br>
+           <small class="text-muted">{{ object.telefono }}</small><br>
+           <small class="text-muted">{{ object.correo }}</small><br>
         </div>
+        </center>
     </div>
-</div>
 
+<!--Fin de vista pantalla grande-->
 <!-- Vista de cards para móviles -->
     <div class="d-block d-md-none">
         <div class="card mb-3 shadow-sm">
@@ -65,7 +76,7 @@
                         <span>{{ object.direccion }}</span>
                     </div>
                     <div class="col-6">
-                        <small class="text-muted">F. Nombre largo:</small><br>
+                        <small class="text-muted">Nombre largo:</small><br>
                         <span>{{ object.nombre_largo }}</span>
                     </div>
                     <div class="col-6">
