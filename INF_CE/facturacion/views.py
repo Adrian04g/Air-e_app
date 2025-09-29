@@ -6,3 +6,4 @@ class FacturacionListView(ListView):
     model = Facturacion
     template_name = 'facturacion/facturacionList.html'
     
+    

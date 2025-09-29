@@ -68,6 +68,113 @@
             </div>
         </div>
     </div>
+    <h1>Facturas de {{ object.nombre }}</h1>
+    <!-- facturas del cable operador -->
+    {% for factura in facturas %}
+    <div class="card">
+        <div class="mb-3 shadow-sm">
+           <div class="card-header bg-primary text-white">
+                <h3>Numero de factura: {{ factura.Num_fact }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-2">
+                        <span class="fw-semibold">Responsable:</span><br>
+                        <small class="text-muted">{{ factura.Responsable }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Clasificacion:</span><br>
+                        <small class="text-muted">{{ factura.Clasificacion }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Mes uso:</span><br>
+                        <small class="text-muted">{{ factura.Mes_uso|date:"M-d" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de la factura:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_fact|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Valor(IVA incluido):</span><br>
+                        <small class="text-muted">{{ factura.Valor_iva }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Valor en millones:</span><br>
+                        <small class="text-muted">{{ factura.Valor_iva_millones }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de vencimiento:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_venc|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Periodo de vencimiento:</span><br>
+                        <small class="text-muted">{{ factura.Periodo_venc|date:"M-d" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Factura aceptada:</span><br>
+                        <small class="text-muted">{{ factura.Factura_aceptada }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Factura vencida:</span><br>
+                        <small class="text-muted">{{ factura.Factura_vencida }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Factura CRC:</span><br>
+                        <small class="text-muted">{{ factura.Factura_CRC }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Valor pagado:</span><br>
+                        <small class="text-muted">{{ factura.Valor_pagado }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de pago:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_pago|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Periodo de pago:</span><br>
+                        <small class="text-muted">{{ factura.Periodo_pago|date:"M-d" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de aplicación:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_aplicacion|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de confirmación:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_confirmacion|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Valor de la deuda:</span><br>
+                        <small class="text-muted">{{ factura.Valor_deuda }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Pagado:</span><br>
+                        <small class="text-muted">{{ factura.Pagado }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Intereses IVA:</span><br>
+                        <small class="text-muted">{{ factura.Interes_iva }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Indicador de recaudo:</span><br>
+                        <small class="text-muted">{{ factura.Indicador_recaudo|date:"d/m/Y" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Acuerdo de pago:</span><br>
+                        <small class="text-muted">{{ factura.Acuerdo_pago }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de acuerdo de pago:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_acuerdo_pago|date:"M-d"|default:"N/A" }}</small>
+                    </div>
+                    <div class="col-2">
+                        <span class="fw-semibold">Fecha de pago de acuerdo de pago:</span><br>
+                        <small class="text-muted">{{ factura.Fecha_pago_AP|date:"M-d"|default:"N/A" }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
  <center><button type="submit" class="btn btn-primary">Volver</button></center>
 <!--Fin de vista pantalla grande-->
