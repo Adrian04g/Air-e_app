@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <center><button type="submit" class="btn btn-primary"><a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a></button></center>
     <h1>Facturas de {{ object.nombre }}</h1>
     <!-- facturas del cable operador -->
     {% for factura in facturas %}
@@ -176,7 +177,6 @@
     </div>
     {% endfor %}
 </div>
- <center><button type="submit" class="btn btn-primary">Volver</button></center>
 <!--Fin de vista pantalla grande-->
 <!-- Vista de cards para móviles -->
     <div class="d-block d-md-none">
