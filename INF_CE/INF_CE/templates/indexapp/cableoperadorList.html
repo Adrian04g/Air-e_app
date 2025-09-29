@@ -33,10 +33,10 @@
 <!-- Vista de tabla para desktop -->
 <div class="row">
     <div class="row g-3"> {% for object in object_list %}
-        <div class="col-lg-6">
+       <div class="col-lg-6">
             <div class="card mb-3 shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h3>{{ object.nombre }}</h3>
+                    <center><h3>{{ object.nombre }}</h3></center>
                 </div>
                 <div class="card-body">
                     <div class="row g-2">
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-6">
                             <button>
-                                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">ver mas</a>
+                               <strong><a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">ver mas</a></strong>
                             </button>
                         </div>
                     </div>
