@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 # Cableoperadores - Aqui va la tabla de los cableoperadores
 class Cableoperadores(models.Model):
-    nombre = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100, unique=True)
     nombre_largo = models.CharField(max_length=255, null=True, blank=True)
     NIT = models.CharField(max_length=100, null=True, blank=True)
     RegistroTic = models.BigIntegerField(null=True, blank=True)

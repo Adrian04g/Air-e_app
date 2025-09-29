@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from indexapp.forms import ProyectosModelForm, CableoperadoresModelForm
 from indexapp.models import Proyectos, Cableoperadores
+from facturacion.models import Facturacion
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
 # Create your views here.
@@ -42,11 +43,17 @@ class CableoperadoresListView(ListView):
         if cableoperador:
             queryset = queryset.filter(nombre=cableoperador)
         return queryset.order_by('nombre')
+    
 def cableoperador(request, pk=None):
     if pk:
         cableoperador = Cableoperadores.objects.get(pk=pk)
-        return render(request, 'indexapp/cableoperador.html', {'object': cableoperador})
-    
+        facturas = Facturacion.objects.filter(Nombre_prst=cableoperador).order_by('-Fecha_fact')
+        object = {
+            'object': cableoperador,
+            'facturas': facturas    
+        }
+        return render(request, 'indexapp/cableoperador.html', object)
+
 class CableoperadoreCreateView(CreateView):
     model = Cableoperadores
     form_class = CableoperadoresModelForm
