@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # Redirecciones de login/logout
-LOGIN_URL = 'inicio'
+LOGIN_URL = 'login:login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 # Application definition

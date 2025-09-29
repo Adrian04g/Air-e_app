@@ -10,32 +10,65 @@
 
 <!--Este es el titulo de la cabecera-->
 {% block title %}
-<span class="h2 align-middle ms-3 admin">Lista de cableoperadores</span>
+<span class="h2 align-middle ms-3 admin">Hoja de vida PRST</span>
 {% endblock %}
 
 <!--Este es el contenido de esta sesion llamada administrador-->
 {% block content %}
-<div class="col-12">
-
+<div class="row g-3 d-none d-md-block">
     <!-- Vista de tabla para desktop -->
-     <center>
-    <div class="table-container d-none d-md-block">
-        <div class="table-row">
-           <h2 <div class="table-cell">{{ object.nombre }}</div></h2>
-           <small class="text-muted">{{ object.NIT }}</small><br>
-           <small class="text-muted">{{ object.nombre_largo }}</small><br>
-           <h1 class="text-muted">{{ object.RegistroTic }}</h1><br>
-           <small class="text-muted">{{ object.CodigoInterno }}</small><br>
-           <small class="text-muted">{{ object.pais }}</small><br>
-           <small class="text-muted">{{ object.ciudad }}</small><br>
-           <small class="text-muted">{{ object.direccion }}</small><br>
-           <small class="text-muted">{{ object.Representante }}</small><br>
-           <small class="text-muted">{{ object.telefono }}</small><br>
-           <small class="text-muted">{{ object.correo }}</small><br>
+    <div class="card">
+        <div class="mb-3 shadow-sm">
+           <div class="card-header bg-primary text-white">
+                <h3>{{ object.nombre }}</h3>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-2">
+                        <small class="text-muted">NIT:</small><br>
+                        <span class="fw-semibold">{{ object.NIT }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Nombre largo:</small><br>
+                        <span class="fw-semibold">{{ object.nombre_largo }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Registro TIC:</small><br>
+                        <span class="fw-semibold">{{ object.RegistroTic }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Codigo Interno:</small><br>
+                        <span class="fw-semibold">{{ object.CodigoInterno }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Pais:</small><br>
+                        <span class="fw-semibold">{{ object.pais }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Ciudad:</small><br>
+                        <span class="fw-semibold">{{ object.ciudad }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Dirección:</small><br>
+                        <span class="fw-semibold">{{ object.direccion }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Representante:</small><br>
+                        <span class="fw-semibold">{{ object.Representante }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Teléfono:</small><br>
+                        <span class="fw-semibold">{{ object.telefono }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Correo:</small><br>
+                        <span class="fw-semibold">{{ object.correo }}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        </center>
     </div>
-
+</div>
 <!--Fin de vista pantalla grande-->
 <!-- Vista de cards para móviles -->
     <div class="d-block d-md-none">

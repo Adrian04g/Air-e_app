@@ -13,41 +13,51 @@
 {% endblock %}
 <!--Contenido-->
 {% block content %}
-<div class="filter-section col-11 d-none d-md-block">
-    <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
-        <div class="col-md-12"></div>
-            <table class="table table-striped ">
-                <thead>
-                    <tr>
-                        <th scope="col" class="col-medium">Nombre del Proyecto</th>
-                        <th scope="col" class="col-medium">Nombre Ingeniero</th>
-                        <th scope="col" class="col-medium">Persona Asignada</th>
-                        <th scope="col" class="col-medium">Estado del Proyecto</th>
-                        <th scope="col" class="col-medium">Fecha asignacion</th>
-                        <th scope="col" class="col-medium">Observaciones</th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    <!-- Aqui va el for para mostrar las facturas-->
-                        {% for object in object_list %}
-                            <tr>
-                                <td>{{ object.nombre_proyecto }}</td>
-                                <td>{{ object.nombre_ingeniero }}</td>
-                                <td>{{ object.persona_asignada }}</td>
-                                <td>{{ object.estado }}</td>
-                                <td>{{ object.fecha_asignacion }}</td>
-                                <td>{{ object.observaciones }}</td>
-                            </tr>
-                        {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </form>
+<div class="row d-none d-md-block">
+    <div class="row g-3"> {% for object in object_list %}
+            <div class="col-lg-6">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h6 class="mb-0">
+                            Proyecto:
+                            <span>{{ object.nombre_proyecto }}</span>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <small class="text-muted">Ingeniero:</small><br>
+                                <span class="fw-semibold">{{ object.nombre_ingeniero }}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Persona Asignada:</small><br>
+                                <span class="fw-semibold">{{ object.persona_asignada }}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Estado:</small><br>
+                                <span>{{ object.estado }}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Fecha Asignacion:</small><br>
+                                <span>{{ object.fecha_asignacion }}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">Observaciones:</small><br>
+                                <span>{{ object.observaciones|default:"Sin observaciones" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 
 <!--Fin del contenido de la interfaz asignacion-->
 
 <!-- Vista de cards para móviles -->
-    <div class="d-block d-md-none">
+<div class="d-block d-md-none">
     {% for object in object_list %}
         <div class="card mb-3 shadow-sm">
             <div class="card-header bg-primary text-white">
@@ -75,7 +85,7 @@
                     </div>
                     <div class="col-6">
                         <small class="text-muted">Observaciones:</small><br>
-                        <span>{{ object.observaciones }}</span>
+                        <span>{{ object.observaciones|default:"Sin observaciones" }}</span>
                     </div>
                 </div>
             </div>
@@ -87,7 +97,6 @@
             </div>
         </div>
     {% endfor %}
-    </div>
+    
+    {% endblock %}
 </div>
-<div class="col-1"></div>
-{% endblock %}

@@ -15,55 +15,57 @@
 
 <!--Este es el contenido de esta sesion llamada administrador-->
 {% block content %}
-<div class="col-12">
-    <!-- Sección de filtros -->
-    <div class="filter-section">
-        <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
-            <div class="flex-grow-1">
-                <strong>Filtrar por cableoperador:</strong>
-                <input type="text" 
-                       name="cableoperadorf" 
-                       id="cableoperadorf" 
-                       class="filter-input"
-                       placeholder="Buscar cableoperador..." 
-                       value="{{ request.GET.cableoperadorf|default:'' }}">
-                       <button type="submit" class="filter-btn">Aplicar Filtro</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- Vista de tabla para desktop -->
-    <div class="row">
-        {% for object in object_list %}
-        <div class="col-sm-6 bg-info border">
-            <h2>{{ object.nombre }}</h2>
-            <center>
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Nombre largo</h3>
-                    <h3>Nit<h3>
-                    <h3>Pais</h3>
-                    <h3>Ciudad/municipio</h3>
-                    <h3>Codigo interno</h3>
+<!-- Sección de filtros -->
+<div class="filter-section">
+    <form method="get" action="." class="d-flex align-items-end gap-2 flex-wrap">
+        <div class="flex-grow-1">
+            <strong>Filtrar por cableoperador:</strong>
+            <input type="text" 
+                    name="cableoperadorf" 
+                    id="cableoperadorf" 
+                    class="filter-input"
+                    placeholder="Buscar cableoperador..." 
+                    value="{{ request.GET.cableoperadorf|default:'' }}">
+            <button type="submit" class="filter-btn">Aplicar Filtro</button>
+        </div>
+    </form>
+</div>
+<!-- Vista de tabla para desktop -->
+<div class="row">
+    <div class="row g-3"> {% for object in object_list %}
+        <div class="col-lg-6">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3>{{ object.nombre }}</h3>
                 </div>
-                    <div class="col-sm-6">
-                        <h3>{{ object.nombre_largo }}</h3>
-                        <h3>{{ object.NIT }}</h3>
-                        <h3>{{ object.pais }}</h3>
-                        <h3>{{ object.ciudad }}</h3>
-                        <h3>{{ object.CodigoInterno }}</h3>
-                    </div>         
-                <div>
-                <button>
-                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">ver mas</a>
-                </button>
+                <div class="card-body">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <small class="text-muted">NIT:</small><br>
+                            <span class="fw-semibold">{{ object.NIT }}</span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">País:</small><br>
+                            <span class="fw-semibold">{{ object.pais }}</span>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">Código interno:</small><br>
+                            <span class="fw-semibold">{{ object.CodigoInterno }}</span>
+                        </div>
+                        <div class="col-6">
+                            <button>
+                                <a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}">ver mas</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-                    </center>
         </div>
         {% empty %}
-                <div colspan="18" class="text-center py-4">
-                    <em>No se encontraron cableoperadores</em>
-                </div>
-        {% endfor %}
+        <div colspan="18" class="text-center py-4">
+            <em>No se encontraron cableoperadores</em>
+        </div>
+    {% endfor %}
     </div>
+</div>
 {% endblock %}
