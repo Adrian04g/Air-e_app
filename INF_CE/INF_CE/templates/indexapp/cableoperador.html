@@ -69,14 +69,16 @@
         </div>
     </div>
     <center><button type="submit" class="btn btn-primary"><a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a></button></center>
-    <h1>Facturas de {{ object.nombre }}</h1>
+    <h1 class="titulo-facturas font-italic text-primary-emphasis
+    border border-warning 
+    bg-secondary bg-gradient-subtle text-emphasis-dark text-center"><span class="h1 align-middle ms-3 admin">Facturas de {{ object.nombre }}</span></h1>
     <!-- facturas del cable operador -->
     {% for factura in facturas %}
     <div class="card">
         <div class="mb-3 shadow-sm">
            <div class="card-header bg-primary text-white">
-                <h3>Numero de factura: {{ factura.Num_fact }}</h3>
-            </div>
+                <center><h3>Numero de factura: {{ factura.Num_fact }}</h3></center>
+            </div> 
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-2">
