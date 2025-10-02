@@ -5,7 +5,7 @@ from django.contrib.auth.models import User, Group
 # Cableoperadores - Aqui va la tabla de los cableoperadores
 Rliquidacion = [
     ('Calendarios', 'Calendarios'),
-    ('Habiles', 'Habiles')
+    ('Habiles', 'Habiles'),
 ]
 class Cableoperadores(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
@@ -26,7 +26,7 @@ class Cableoperadores(models.Model):
     vencimiento_factura = models.IntegerField()
     preliquidacion_num = models.IntegerField()
     preliquidacion_letra = models.CharField(max_length=100)
-    respuesta_preliquidacion = models.Choices(choices=Rliquidacion, max_length=100)
+    respuesta_preliquidacion = models.CharField(choices=Rliquidacion, max_length=100)
     
     class Meta:
         db_table = "cableoperadores"
