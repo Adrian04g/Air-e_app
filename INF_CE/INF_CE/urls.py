@@ -22,6 +22,7 @@ urlpatterns = [
     path('index/', include('indexapp.urls')),
     path('asignacion/', include('Asignacion.urls')),
     path('facturacion/', include('facturacion.urls')),
+    path('proyectos/', include('proyectos.urls')),
     path('select2/', include('django_select2.urls')),
     path('', include('login.urls')),
 ]
