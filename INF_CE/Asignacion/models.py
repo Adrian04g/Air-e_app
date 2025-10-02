@@ -1,5 +1,5 @@
 from django.db import models
-from indexapp.models import Proyectos
+from proyectos.models import Proyectos
 from django.contrib.auth.models import User, Group # Importa los modelos de usuario y grupo
 
 # Create your models here
