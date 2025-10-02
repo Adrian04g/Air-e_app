@@ -35,6 +35,12 @@
                     </a>
                 </li>
                 <li class="nav-item mb-2">
+                    <a href="{% url 'indexapp:lista_cableoperadores' %}">
+                        <span class="sidebar-icon">🔌</span>
+                        <span class="sidebar-text text-white">Cableoperadores</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
                     <a href="{% url 'asignacion:AsignacionList' %}">
                         <span class="sidebar-icon">🗂️</span>
                         <span class="sidebar-text text-white">Asignados</span>
@@ -64,12 +70,7 @@
                         <span class="sidebar-text text-white">Facturacion</span>
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a href="{% url 'indexapp:lista_cableoperadores' %}">
-                        <span class="sidebar-icon">🔌</span>
-                        <span class="sidebar-text text-white">Cableoperadores</span>
-                    </a>
-                </li><br><br>
+                <br><br>
                 <li class="nav-item mb-2">
                         {% if user.is_authenticated %}
                             <span class="sidebar-text text-white">👨‍💼Usuario: </span>
