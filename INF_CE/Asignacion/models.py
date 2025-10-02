@@ -3,7 +3,6 @@ from proyectos.models import Proyectos
 from django.contrib.auth.models import User, Group # Importa los modelos de usuario y grupo
 
 # Create your models here
-
 class Asignacion_proyectos(models.Model):
     nombre_proyecto = models.OneToOneField(Proyectos, on_delete=models.CASCADE, primary_key=True)
     nombre_ingeniero = models.CharField(max_length=100)

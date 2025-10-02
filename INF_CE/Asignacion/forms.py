@@ -8,8 +8,6 @@ SHIFT_CHOICES = [
     ('1', 'En Progreso'),
     ('2', 'Completado'),
 ]
-
-
 # Formulario con ModelForms
 class AsignacionProyectosForm(forms.ModelForm):
     # Definimos el campo persona_asignada como un ModelChoiceField
@@ -32,7 +30,6 @@ class AsignacionProyectosForm(forms.ModelForm):
         label="Nombre Ingeniero",
         empty_label="Seleccione un ingeniero"
     )
-
     class Meta:
         model = Asignacion_proyectos
         fields = 'nombre_proyecto','nombre_ingeniero', 'persona_asignada', 'observaciones'
@@ -45,8 +42,6 @@ class AsignacionProyectosForm(forms.ModelForm):
             'nombre_proyecto': Select2Widget,
             'persona_asignada': Select2Widget
         }
-
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         
