@@ -15,4 +15,4 @@ class CableoperadoresModelForm(forms.ModelForm):
     class Meta:
         model = Cableoperadores
         fields = '__all__'
-        
+        exclude = ['ejecutiva']

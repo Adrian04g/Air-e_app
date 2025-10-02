@@ -28,9 +28,7 @@ class Proyectos(models.Model):
     nombre = models.CharField(max_length=100, primary_key=True)
     responsable = models.CharField(
         max_length=100,
-        null=True,
-        blank=True,
-        verbose_name="Ejecutiva responsable"
+        verbose_name="Ejecutiva responsable",
     )
     TipoIngreso = models.CharField(max_length=100, choices=INGRESO, default='tipo1')
     Formato02 = models.CharField(max_length=2, choices=SI_NO_CHOICES, default='no', verbose_name="¿Formato solicitud Uso de infraestructura?")

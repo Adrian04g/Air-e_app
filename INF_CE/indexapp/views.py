@@ -38,3 +38,15 @@ class CableoperadoreCreateView(CreateView):
     form_class = CableoperadoresModelForm
     template_name = 'indexapp/CableoperadoresForm.html'
     success_url = '/index/CableoperadoresForm.html'
+    def form_valid(self, form):
+        # 1. Obtener el objeto User logueado
+        user = self.request.user
+
+        # 2. Construir el nombre completo (nombre y apellido)
+        full_name = f"{user.first_name} {user.last_name}".strip()
+
+        # 3. Asignar el valor al campo 'ejecutiva' de la instancia
+        form.instance.ejecutiva = full_name
+
+        # 4. Llamar al método base para guardar el objeto
+        return super().form_valid(form)
