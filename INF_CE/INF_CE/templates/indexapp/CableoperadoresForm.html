@@ -14,19 +14,26 @@
 {% block content %}
 <!--Formulario para registrar cableoperadores-->
 <div class="container mt-4 col-4">
-    <h2>Registrar Nuevo Cableoperador</h2>
+    <center><h2>Registrar Nuevo Cableoperador</h2></center>
     <form method="post" action="">
         {% csrf_token %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!--para que salga la barra de busqueda-->
         {{ form.media }} <!-- ¡Esta línea es crucial! -->
-        <table>
+        <strong><table>
             {{ form.as_p }}
         </table>
+        </strong>
         <center>
         <button type="submit" class="btn btn-primary">Guardar Proyecto</button>
         </center>
     </form>
 </div>
-<center><button type="submit" class="btn btn-primary"><a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a></button></center>
+<center>
+          <div class="d-flex justify-content-center mt-4"></div>
+          <button type="submit" class="btn btn-primary">
+            <a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a>
+        </div>
+    </button>
+</center>
 <div class="col-6"></div>
 {% endblock %} 
