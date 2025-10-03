@@ -1,0 +1,95 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>{{ titulo }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Estilos específicos para la estructura de secciones */
+        .form-section-header {
+            @apply text-xl font-semibold text-white bg-indigo-600 p-3 rounded-t-lg mt-6 shadow-md;
+        }
+        .form-section-body {
+            @apply bg-white p-6 rounded-b-lg shadow-lg border-t-2 border-indigo-200;
+        }
+    </style>
+{% endblock %}
+{% block title %}
+<span class="text-4xl font-extrabold text-indigo-800 ">
+        {{ titulo }}
+    </span>
+{% endblock %}
+{% block content %}
+    <!-- Usa Tailwind CSS para un diseño moderno y responsive -->
+<div class="max-w-6xl mx-auto">
+
+    <form method="post" class="space-y-8">
+        {% csrf_token %}
+        
+        <!-- SECCIÓN 1: DATOS GENERALES DEL CONTRATO -->
+        <div class="bg-white p-6 rounded-xl shadow-2xl">
+            <h2 class="text-2xl font-bold text-gray-700 mb-6">Información General del Contrato</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for field in form %}
+                    <div class="field-wrapper">
+                        <label class="block text-sm font-medium text-gray-700 mb-1" for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-red-500 text-xs italic mt-1">{{ field.errors.as_text }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: RECURSOS POR ALTURA (CABLE, CAJA, RESERVA, NAP) -->
+        <div class="space-y-6">
+            
+            <!-- Cable Formset -->
+            <div class="form-section-header">Uso de Cables</div>
+            <div class="form-section-body">
+                {{ cable_formset.management_form }}
+                {% for form in cable_formset %}
+                    {% include "contratos/recurso_fields.html" with form=form %}
+                {% endfor %}
+            </div>
+
+            <!-- Caja de Empalme Formset -->
+            <div class="form-section-header">Uso de Caja de Empalme</div>
+            <div class="form-section-body">
+                {{ caja_empalme_formset.management_form }}
+                {% for form in caja_empalme_formset %}
+                    {% include "contratos/recurso_fields.html" with form=form %}
+                {% endfor %}
+            </div>
+
+            <!-- Reserva Formset -->
+            <div class="form-section-header">Uso de Reserva</div>
+            <div class="form-section-body">
+                {{ reserva_formset.management_form }}
+                {% for form in reserva_formset %}
+                    {% include "contratos/recurso_fields.html" with form=form %}
+                {% endfor %}
+            </div>
+            
+            <!-- Nap Formset -->
+            <div class="form-section-header">Uso de NAP</div>
+            <div class="form-section-body">
+                {{ nap_formset.management_form }}
+                {% for form in nap_formset %}
+                    {% include "contratos/recurso_fields.html" with form=form %}
+                {% endfor %}
+            </div>
+            
+        </div>
+
+        <button type="submit" class="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-lg transition duration-200 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+            Guardar Contrato
+        </button>
+    </form>
+</div>
+{% endblock %}

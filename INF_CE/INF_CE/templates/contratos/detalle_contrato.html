@@ -1,0 +1,181 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>{{ titulo }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Estilos específicos para la estructura de secciones */
+        .form-section-header {
+            @apply text-xl font-semibold text-white bg-indigo-600 p-3 rounded-t-lg mt-6 shadow-md;
+        }
+        .form-section-body {
+            @apply bg-white p-6 rounded-b-lg shadow-lg border-t-2 border-indigo-200;
+        }
+    </style>
+{% endblock %}
+{% block title %}
+<span class="text-4xl font-extrabold text-indigo-800 ">
+        {{ titulo }}
+    </span>
+{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-center mb-8 border-b pb-4 border-indigo-200">
+        <a href="{% url 'contratos:lista_contratos' %}" class="px-4 py-2 bg-gray-500 text-white text-sm font-medium rounded-lg hover:bg-gray-600 transition duration-150">
+            ← Volver a la Lista
+        </a>
+    </div>
+
+    <!-- SECCIÓN 1: DATOS GENERALES DEL CONTRATO -->
+    <div class="card mb-10">
+        <h2 class="text-2xl font-bold text-indigo-600 mb-6 border-b pb-2">Detalles Principales</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4">
+            
+            <!-- Columna Cableoperador -->
+            <div class="col-span-2 md:col-span-4 lg:col-span-1">
+                <p class="data-label">Cableoperador</p>
+                <p class="data-value text-xl text-indigo-700">{{ contrato.cableoperador.nombre }}</p>
+            </div>
+
+            <!-- Otras Columnas -->
+            <div>
+                <p class="data-label">Número Contrato</p>
+                <p class="data-value">{{ contrato.numero_contrato }}</p>
+            </div>
+            <div>
+                <p class="data-label">Estado</p>
+                <p class="data-value">{{ contrato.get_estado_contrato_display }}</p>
+            </div>
+            <div>
+                <p class="data-label">Tipo Contrato</p>
+                <p class="data-value">{{ contrato.get_tipo_contrato_display }}</p>
+            </div>
+            <div>
+                <p class="data-label">Valor (COP)</p>
+                <p class="data-value">${{ contrato.valor_contrato|floatformat:2 }}</p>
+            </div>
+            <div>
+                <p class="data-label">Inicio Vigencia</p>
+                <p class="data-value">{{ contrato.inicio_vigencia|date:"d M Y" }}</p>
+            </div>
+            <div>
+                <p class="data-label">Fin Vigencia</p>
+                <p class="data-value">{{ contrato.fin_vigencia|date:"d M Y" }}</p>
+            </div>
+            <div>
+                <p class="data-label">Duración (Años)</p>
+                <p class="data-value">{{ contrato.duracion_anos }}</p>
+            </div>
+            <div>
+                <p class="data-label">Garantía</p>
+                <p class="data-value">{{ contrato.Garantia }}</p>
+            </div>
+            <div>
+                <p class="data-label">Fecha de radicación</p>
+                <p class="data-value">{{ contrato.fecha_radicacion }}</p>
+            </div>
+            <div>
+                <p class="data-label">Tipo fecha de radicación</p>
+                <p class="data-value">{{ contrato.tipo_fecha_radicacion }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECCIÓN 2: DATOS DE RECURSOS POR ALTURA (Tabla Consolidada) -->
+    <div class="card">
+        <h2 class="text-2xl font-bold text-indigo-600 mb-6 border-b pb-2">Detalle de Usos y Recursos por Altura de Poste</h2>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 resource-table">
+                <thead>
+                    <tr>
+                        <th>Recurso</th>
+                        <th>8m</th>
+                        <th>10m</th>
+                        <th>12m</th>
+                        <th>14m</th>
+                        <th>15m</th>
+                        <th>16m</th>
+                        <th>20m</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    
+                    <!-- FILA 1: CABLES -->
+                    {% with c=contrato.cable %}
+                    <tr>
+                        <td class="font-bold text-indigo-700">Cables</td>
+                        <td>{{ c.tipo8 }}</td>
+                        <td>{{ c.tipo10 }}</td>
+                        <td>{{ c.tipo12 }}</td>
+                        <td>{{ c.tipo14 }}</td>
+                        <td>{{ c.tipo15 }}</td>
+                        <td>{{ c.tipo16 }}</td>
+                        <td>{{ c.tipo20 }}</td>
+                    </tr>
+                    {% endwith %}
+
+                    <!-- FILA 2: CAJAS DE EMPALME -->
+                    {% with ce=contrato.caja_empalme %}
+                    <tr>
+                        <td class="font-bold text-indigo-700">Cajas de Empalme</td>
+                        <td>{{ ce.tipo8 }}</td>
+                        <td>{{ ce.tipo10 }}</td>
+                        <td>{{ ce.tipo12 }}</td>
+                        <td>{{ ce.tipo14 }}</td>
+                        <td>{{ ce.tipo15 }}</td>
+                        <td>{{ ce.tipo16 }}</td>
+                        <td>{{ ce.tipo20 }}</td>
+                    </tr>
+                    {% endwith %}
+                    
+                    <!-- FILA 3: RESERVAS -->
+                    {% with r=contrato.reserva %}
+                    <tr>
+                        <td class="font-bold text-indigo-700">Reservas</td>
+                        <td>{{ r.tipo8 }}</td>
+                        <td>{{ r.tipo10 }}</td>
+                        <td>{{ r.tipo12 }}</td>
+                        <td>{{ r.tipo14 }}</td>
+                        <td>{{ r.tipo15 }}</td>
+                        <td>{{ r.tipo16 }}</td>
+                        <td>{{ r.tipo20 }}</td>
+                    </tr>
+                    {% endwith %}
+
+                    <!-- FILA 4: NAPS -->
+                    {% with n=contrato.nap %}
+                    <tr>
+                        <td class="font-bold text-indigo-700">NAPs</td>
+                        <!-- Nota: Accedemos a los campos tip8, tip10, etc., según la definición en tu modelo Nap -->
+                        <td>{{ n.tip8 }}</td>
+                        <td>{{ n.tip10 }}</td>
+                        <td>{{ n.tip12 }}</td>
+                        <td>{{ n.tip14 }}</td>
+                        <td>{{ n.tip15 }}</td>
+                        <td>{{ n.tip16 }}</td>
+                        <td>{{ n.tip20 }}</td>
+                    </tr>
+                    {% endwith %}
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 pt-4 border-t border-gray-200 flex justify-end space-x-4">
+                <!-- Botones de CRUD Adicionales (Ejemplo) -->
+                <a href="#" class="px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition duration-150">
+                Editar Contrato
+                </a>
+                <a href="#" class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition duration-150">
+                Eliminar Contrato
+                </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

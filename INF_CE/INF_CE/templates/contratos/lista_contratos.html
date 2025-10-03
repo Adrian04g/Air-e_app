@@ -1,0 +1,92 @@
+<!-- Se carga la plantilla base -->
+{% extends 'base.html' %} <!-- ruta de la plantilla base -->
+{% load static %} <!-- Se cargan los script e imagenes -->
+<!--Titulo de la pestaña-->
+{% block Title_head %}
+<title>{{ titulo }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        /* Estilos específicos para la estructura de secciones */
+        .form-section-header {
+            @apply text-xl font-semibold text-white bg-indigo-600 p-3 rounded-t-lg mt-6 shadow-md;
+        }
+        .form-section-body {
+            @apply bg-white p-6 rounded-b-lg shadow-lg border-t-2 border-indigo-200;
+        }
+    </style>
+{% endblock %}
+{% block title %}
+<span class="text-4xl font-extrabold text-indigo-800 ">
+        {{ titulo }}
+        Lista de Contratos
+    </span>
+{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    
+    <!-- HEADER -->
+    <div class="flex justify-between items-center mb-8 border-b pb-4 border-indigo-200">
+        <a href="{% url 'contratos:crear_contrato' %}" class="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 transition duration-150 shadow-md">
+            + Registrar Nuevo Contrato
+        </a>
+    </div>
+
+    <!-- TABLA DE CONTRATOS -->
+    <div class="card overflow-x-auto">
+        {% if object_list %}
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="table-header">
+                <tr>
+                    <th>N° Contrato</th>
+                    <th>Cableoperador</th>
+                    <th>Estado</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Vigencia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                {% for contrato in object_list %}
+                <tr class="hover:bg-indigo-50 table-row">
+                    <!-- N° Contrato y Enlace a Detalle -->
+                    <td class="font-bold text-indigo-700">
+                        <a href="{% url 'contratos:detalle_contrato' pk=contrato.pk %}" class="hover:underline">
+                            {{ contrato.numero_contrato }}
+                        </a>
+                    </td>
+                    <!-- Cableoperador (usando el select_related de la vista) -->
+                    <td>{{ contrato.cableoperador.nombre }}</td>
+                    <!-- Estado del Contrato (usando el display value) -->
+                    <td>{{ contrato.get_estado_contrato_display }}</td>
+                    <!-- Tipo de Contrato (usando el display value) -->
+                    <td>{{ contrato.get_tipo_contrato_display }}</td>
+                    <!-- Valor -->
+                    <td>${{ contrato.valor_contrato|floatformat:2 }}</td>
+                    <!-- Vigencia -->
+                    <td>
+                        {{ contrato.inicio_vigencia|date:"d M Y" }} 
+                        a 
+                        {{ contrato.fin_vigencia|date:"d M Y" }}
+                    </td>
+                    <!-- Botón de Acciones Rápido -->
+                    <td>
+                        <a href="{% url 'contratos:detalle_contrato' pk=contrato.pk %}" class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
+                            Ver Detalle
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="text-center py-10 text-gray-500">
+            <p>No se encontraron contratos registrados.</p>
+            <p class="mt-2"><a href="{% url 'contratos:crear_contrato' %}" class="text-indigo-600 hover:underline font-medium">¡Crea el primer contrato aquí!</a></p>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
