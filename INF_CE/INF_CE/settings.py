@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Asignacion',
     'facturacion',
     'proyectos',
+    'contratos',
 ]
 
 MIDDLEWARE = [

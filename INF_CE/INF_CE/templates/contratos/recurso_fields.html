@@ -1,0 +1,35 @@
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-4">
+    <!-- 
+        Itera sobre todos los campos del formulario que se le pase. 
+        Este fragmento espera un formulario de recurso (Cable, Caja_empalme, Reserva, o Nap).
+    -->
+    {% for field in form %}
+        
+        <!-- 
+            Excluye campos de gestión internos de Django como 'id' y el campo 
+            ForeignKey que apunta al Contrato ('contrato' o 'contratos').
+        -->
+        {% if field.name != 'id' and field.name != 'contrato' and field.name != 'contratos' %}
+            <div class="field-wrapper">
+                <label class="block text-sm font-medium text-gray-700 mb-1" for="{{ field.id_for_label }}">
+                    <!-- 
+                        Muestra la etiqueta del campo. 
+                        Usamos el filtro 'cut' para limpiar el texto verbose_name y dejar solo la altura (ej: 8m). 
+                        Esto hace la etiqueta más limpia y legible.
+                    -->
+                    <span class="text-sm font-semibold text-indigo-700">
+                        {{ field.label }}
+                    </span>
+                </label>
+                
+                <!-- Renderiza el campo del formulario (el input numérico) -->
+                {{ field }}
+                
+                <!-- Muestra los errores del campo, si existen -->
+                {% if field.errors %}
+                    <p class="text-red-500 text-xs italic mt-1">{{ field.errors.as_text }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

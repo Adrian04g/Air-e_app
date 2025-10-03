@@ -49,7 +49,7 @@ class CableoperadoreCreateView(CreateView):
     model = Cableoperadores
     form_class = CableoperadoresModelForm
     template_name = 'indexapp/CableoperadoresForm.html'
-    success_url = '/index/CableoperadoresForm.html'
+    success_url = 'index/PRST/crear/'
     def form_valid(self, form):
         # 1. Obtener el objeto User logueado
         user = self.request.user

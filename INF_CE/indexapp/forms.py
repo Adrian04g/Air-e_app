@@ -2,6 +2,8 @@ from django import forms
 from .models import Cableoperadores
 from django.contrib.auth.models import User, Group
 from django_select2.forms import Select2Widget
+
+
 # Opciones para el campo de estado del proyecto
 SHIFT_CHOICES = [
     ('1', 'En Progreso'),
@@ -97,5 +99,6 @@ class CableoperadoresModelForm(forms.ModelForm):
                 'class': 'form-control'
             }),
         }
+
         
         
