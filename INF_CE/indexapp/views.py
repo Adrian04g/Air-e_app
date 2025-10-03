@@ -13,15 +13,27 @@ def error(request):
     return render(request, 'error.html')
          
 # Clase de cableoperadores
+# En tu views.py
 class CableoperadoresListView(ListView):
     model = Cableoperadores
     template_name = 'indexapp/cableoperadorList.html'
+    
     def get_queryset(self):
         queryset = super().get_queryset()
-        cableoperador = self.request.GET.get('cableoperadorf')
-        if cableoperador:
-            queryset = queryset.filter(nombre=cableoperador)
+        cableoperador_pk = self.request.GET.get('cableoperadorf') # Obtiene el PK del select
+        
+        if cableoperador_pk and cableoperador_pk != '':
+            # 💡 Filtra por la clave primaria (pk)
+            queryset = queryset.filter(pk=cableoperador_pk) 
+            
         return queryset.order_by('nombre')
+    # Continúa en tu views.py, dentro de CableoperadoresListView
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # 💡 Pasa la lista de TODOS los cableoperadores para llenar el <select>
+        context['cableoperadores'] = Cableoperadores.objects.all().order_by('nombre_largo') 
+        return context
     
 def cableoperador(request, pk=None):
     if pk:
