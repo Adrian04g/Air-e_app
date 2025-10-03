@@ -29,15 +29,18 @@ class CableoperadoresModelForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'NIT del cableoperador'
             }),
+            'Digito_verificacion': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Digito de verificación del cableoperador'
+            }),
             'RegistroTic': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Registro TIC del cableoperador'
             }),
-            'CodigoInterno': forms.NumberInput(attrs={
+            'CodigoInterno': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Codigo Interno del cableoperador'
-            }), 
-            
+                'placeholder': 'Código interno del cableoperador'
+            }),
             'pais': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Pais del cableoperador'
@@ -62,10 +65,36 @@ class CableoperadoresModelForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Correo del cableoperador'
             }),
-            'ejecutiva': forms.Select(attrs={
-                'class': 'form-DateInput',
-                'widget': Select2Widget
-                
+            'observaciones': forms.Textarea(attrs={
+                'class': 'form-control',
+                'placeholder': 'Observaciones',
+                'rows': 4,
+            }),
+            'estado': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Estado del cableoperador',
+                'max_length': 100
+            }),
+            'vencimiento_factura': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Vencimiento de la factura'
+            }),
+            'preliquidacion_num': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Número de preliquidación'
+            }),
+            'preliquidacion_letra': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Letra de preliquidación',
+                'max_length': 100
+            }),
+            'respuesta_preliquidacion': forms.Select(attrs={
+                'class': 'form-control',
+                'placeholder': 'Letra de preliquidación',
+                'max_length': 100
+            }),
+            'ejecutiva': Select2Widget(attrs={
+                'class': 'form-control'
             }),
         }
         
