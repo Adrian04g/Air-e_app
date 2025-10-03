@@ -24,14 +24,14 @@
         </table>
         </strong>
         <center>
-        <button type="submit" class="btn btn-primary">Guardar Cableoperador</button>
+        <button type="submit" class="btn btn-primary">Guardar<a href="{% url 'indexapp:detalle_cableoperador' pk=object.pk %}"></a></button>
         </center>
     </form>
 </div>
 <center>
           <div class="d-flex justify-content-center mt-4"></div>
           <button type="submit" class="btn btn-primary">
-            <a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a>
+            <a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Ir a lista de cable operadores</a>
         </div>
     </button>
 </center>

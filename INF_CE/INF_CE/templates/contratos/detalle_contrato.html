@@ -55,7 +55,8 @@
             </div>
             <div>
                 <p class="data-label">Valor (COP)</p>
-                <p class="data-value">${{ contrato.valor_contrato|floatformat:2 }}</p>
+                {% load humanize %}
+                <p class="data-value">${{ contrato.valor_contrato|floatformat:2|intcomma }}</p>
             </div>
             <div>
                 <p class="data-label">Inicio Vigencia</p>

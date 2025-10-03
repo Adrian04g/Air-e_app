@@ -7,6 +7,17 @@ Rliquidacion = [
     ('Calendarios', 'Calendarios'),
     ('Habiles', 'Habiles'),
 ]
+ESTADOS_CONTRATO = [
+    ('Contratado' , 'Contratado'),
+    ('Finalizado' , 'Finalizado'),
+    ('En_Renovacion' , 'En Renovacion'),
+    ('Renovacion_firma_prst' , 'En Renovacion - Firma PRST'),
+    ('Renovacion_firma_air_e' , 'En Renovacion - Firma AIR-E'),
+    ('nuevo_firma_prst' , 'Nuevo - Firma PRST'),
+    ('nuevo_firma_air_e' , 'Nuevo - Firma AIR-E'),
+    ('En_Gestion' , 'En Gestion'),
+    ('Sin_usos' , 'Sin Usos'),
+]
 class Cableoperadores(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     nombre_largo = models.CharField(max_length=255, null=True, blank=True, unique=True)
@@ -22,11 +33,11 @@ class Cableoperadores(models.Model):
     correo = models.EmailField(max_length=100)
     ejecutiva = models.CharField(max_length=100)
     observaciones = models.TextField(max_length=1000)
-    estado = models.CharField(max_length=100)
-    vencimiento_factura = models.IntegerField()
-    preliquidacion_num = models.IntegerField()
-    preliquidacion_letra = models.CharField(max_length=100)
-    respuesta_preliquidacion = models.CharField(choices=Rliquidacion, max_length=100)
+    estado = models.CharField(max_length=100, choices=ESTADOS_CONTRATO)
+    vencimiento_factura = models.IntegerField(null=True, blank=True)
+    preliquidacion_num = models.IntegerField(null=True, blank=True)
+    preliquidacion_letra = models.CharField(max_length=100,null=True, blank=True)
+    respuesta_preliquidacion = models.CharField(choices=Rliquidacion, max_length=100,null=True, blank=True)
     
     class Meta:
         db_table = "cableoperadores"

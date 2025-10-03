@@ -72,7 +72,7 @@ class CableoperadoresModelForm(forms.ModelForm):
                 'placeholder': 'Observaciones',
                 'rows': 4,
             }),
-            'estado': forms.TextInput(attrs={
+            'estado': forms.Select(attrs={
                 'class': 'form-control',
                 'placeholder': 'Estado del cableoperador',
                 'max_length': 100

@@ -7,4 +7,5 @@ urlpatterns = [
     path('PRST/', views.CableoperadoresListView.as_view(), name='lista_cableoperadores'),
     path('PRST/<int:pk>/', views.cableoperador, name='detalle_cableoperador'),
     path('PRST/crear/', views.CableoperadoreCreateView.as_view(), name='crear_cableoperador'),
+    path('PRST/<int:pk>/editar/', views.CableoperadoresUpdateView.as_view(), name='editar_cableoperador'),
 ]
