@@ -26,49 +26,54 @@
                 <div class="row g-2">
                     <div class="col-12">
                         <small class="text-muted">NIT:</small><br>
-                        <span class="fw-semibold">{{ object.NIT }}</span>
+                        <span class="fw-semibold">{{ object.NIT|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Nombre largo:</small><br>
-                        <span class="fw-semibold">{{ object.nombre_largo }}</span>
+                        <span class="fw-semibold">{{ object.nombre_largo|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Registro TIC:</small><br>
-                        <span class="fw-semibold">{{ object.RegistroTic }}</span>
+                        <span class="fw-semibold">{{ object.RegistroTic|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Codigo Interno:</small><br>
-                        <span class="fw-semibold">{{ object.CodigoInterno }}</span>
+                        <span class="fw-semibold">{{ object.CodigoInterno|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Pais:</small><br>
-                        <span class="fw-semibold">{{ object.pais }}</span>
+                        <span class="fw-semibold">{{ object.pais|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Ciudad:</small><br>
-                        <span class="fw-semibold">{{ object.ciudad }}</span>
+                        <span class="fw-semibold">{{ object.ciudad|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Dirección:</small><br>
-                        <span class="fw-semibold">{{ object.direccion }}</span>
+                        <span class="fw-semibold">{{ object.direccion|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Representante:</small><br>
-                        <span class="fw-semibold">{{ object.Representante }}</span>
+                        <span class="fw-semibold">{{ object.Representante|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Teléfono:</small><br>
-                        <span class="fw-semibold">{{ object.telefono }}</span>
+                        <span class="fw-semibold">{{ object.telefono|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Correo:</small><br>
-                        <span class="fw-semibold">{{ object.correo }}</span>
+                        <span class="fw-semibold">{{ object.correo|default:"N/A" }}</span>
+                    </div>
+                    <div class="col-2">
+                        <small class="text-muted">Ejecutiva:</small><br>
+                        <span class="fw-semibold">{{ object.ejecutiva }}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <center><button type="submit" class="btn btn-primary w-100"><a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a></button></center>
+    <button type="submit" class="btn btn-primary"><a class="text-white" href="{% url 'indexapp:editar_cableoperador' object.pk %}">Editar cable operador</a></button>
     <h1 class="titulo-facturas font-italic text-primary-emphasis
       border border-light border border-4 
     bg-secondary bg-gradient-subtle text-emphasis-dark text-center"><span class="h1 align-middle ms-3 admin">Facturas de {{ object.nombre }}</span></h1>
