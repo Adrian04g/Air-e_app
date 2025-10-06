@@ -31,7 +31,7 @@ class Cableoperadores(models.Model):
     Representante = models.CharField(max_length=100, null=True, blank=True)
     telefono = models.BigIntegerField()
     correo = models.EmailField(max_length=100)
-    ejecutiva = models.CharField(max_length=100)
+    ejecutiva = models.ForeignKey(User, on_delete=models.CASCADE)
     observaciones = models.TextField(max_length=1000)
     estado = models.CharField(max_length=100, choices=ESTADOS_CONTRATO)
     vencimiento_factura = models.IntegerField(null=True, blank=True)

@@ -52,16 +52,15 @@ class CableoperadoreCreateView(CreateView):
     template_name = 'indexapp/CableoperadoresForm.html'
     success_url = '/index/PRST/'
     def form_valid(self, form):
-        # 1. Obtener el objeto User logueado
-        user = self.request.user
+        # 1. Accede al objeto User que está haciendo la solicitud.
+        #    'self.request.user' contiene el objeto User logueado.
+        current_user = self.request.user
 
-        # 2. Construir el nombre completo (nombre y apellido)
-        full_name = f"{user.first_name} {user.last_name}".strip()
+        # 2. Asigna el objeto User al campo 'ejecutiva' de la instancia.
+        #    Esto es crucial para un ForeignKey: ¡debes asignar el objeto!
+        form.instance.ejecutiva = current_user
 
-        # 3. Asignar el valor al campo 'ejecutiva' de la instancia
-        form.instance.ejecutiva = full_name
-
-        # 4. Llamar al método base para guardar el objeto
+        # 3. Llama al método base para guardar el objeto y manejar la redirección.
         return super().form_valid(form)
 class CableoperadoresUpdateView(UpdateView):
     model = Cableoperadores
@@ -69,18 +68,6 @@ class CableoperadoresUpdateView(UpdateView):
     template_name = 'indexapp/CableoperadoresForm.html'
     #success_url = '/index/PRST/'
 
-    def form_valid(self, form):
-        # 1. Obtener el objeto User logueado
-        user = self.request.user
-
-        # 2. Construir el nombre completo (nombre y apellido)
-        full_name = f"{user.first_name} {user.last_name}".strip()
-
-        # 3. Asignar el valor al campo 'ejecutiva' de la instancia
-        form.instance.ejecutiva = full_name
-
-        # 4. Llamar al método base para guardar el objeto
-        return super().form_valid(form)
     def get_success_url(self):
         # El objeto que se acaba de actualizar está disponible como self.object
         pk = self.object.pk
