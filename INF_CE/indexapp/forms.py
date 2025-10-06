@@ -59,7 +59,7 @@ class CableoperadoresModelForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Representante del cableoperador'
             }),
-            'telefono': forms.TextInput(attrs={
+            'telefono*': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Telefono del cableoperador'
             }),

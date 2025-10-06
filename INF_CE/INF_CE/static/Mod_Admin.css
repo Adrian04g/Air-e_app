@@ -272,3 +272,8 @@ body {
   transition: transform 0.3s ease-in-out; /* Transición para un efecto suave */
 }
 /* Colocar en ProyectosList.css u otro archivo .css */
+/* Esto busca la etiqueta de un campo con la clase 'required' y añade el asterisco */
+label.required:after {
+    content: " *";
+    color: red; /* O el color que desees */
+}
