@@ -90,6 +90,11 @@
         <button type="submit" class="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-lg transition duration-200 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
             Guardar Contrato
         </button>
+         <div class="d-grid gap-2 mb-3">
+    <button class="btn btn-primary">
+        <a class="text-white text-decoration-none" href="{% url 'indexapp:lista_contratos' %}">Volver a lista de cable operadores</a>
+    </button>
+</div>
     </form>
 </div>
 {% endblock %}
