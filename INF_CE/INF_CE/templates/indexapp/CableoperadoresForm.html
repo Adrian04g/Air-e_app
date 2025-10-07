@@ -24,16 +24,15 @@
         </table>
         </strong>
         <center>
-        <button type="submit" class="btn btn-primary">Guardar<a href="{% url 'indexapp:lista_cableoperadores' %}"></a></button>
+        <button type="submit" class="btn btn-primary border border-light border border-2">Guardar<a href="{% url 'indexapp:lista_cableoperadores' %}"></a></button>
         </center>
     </form>
 </div>
+
 <center>
-          <div class="d-flex justify-content-center mt-4"></div>
-          <button type="submit" class="btn btn-primary">
-            <a class="text-white" href="{% url 'indexapp:lista_cableoperadores' %}">Ir a lista de cable operadores</a>
-        </div>
-    </button>
+    <button type="submit" class="btn btn-primary border border-light border border-2">
+    <a class="text-white text-decoration-none" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a>
+   </button>
 </center>
 <div class="col-6"></div>
 {% endblock %} 
