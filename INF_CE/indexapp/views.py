@@ -6,6 +6,7 @@ from facturacion.models import Facturacion
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 def admin(request):
     return render(request,'indexapp/admin.html')

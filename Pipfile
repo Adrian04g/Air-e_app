@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 mysqlclient = "*"
 django-select2 = "*"
-djangorestframework = "*"
 djangorestframework-xml = "*"
 djoser = "*"
+djangorestframework = "*"
+django = "*"
+
 [dev-packages]
 
 [requires]

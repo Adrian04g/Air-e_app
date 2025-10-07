@@ -20,17 +20,17 @@
     <div class="card">
         <div class="mb-3 shadow-sm">
            <div class="card-header bg-primary text-white">
-                <center><h3>{{ object.nombre }}</h3></center>
+                <center><h3>{{ object.nombre_largo|default:object.nombre }} {% if object.nombre_largo == NONE %}(Por favor registrar nombre largo){% endif %}</h3></center>
             </div>
             <div class="card-body">
                 <div class="row g-2">
                     <div class="col-12">
                         <small class="text-muted">NIT:</small><br>
-                        <span class="fw-semibold">{{ object.NIT|default:"N/A" }}</span>
+                        <span class="fw-semibold">{{ object.NIT|default:"N/A" }}{% if object.Digito_verificacion %}-{{ object.Digito_verificacion|default:"" }}{% endif %}</span>
                     </div>
                     <div class="col-12">
-                        <small class="text-muted">Nombre largo:</small><br>
-                        <span class="fw-semibold">{{ object.nombre_largo|default:"N/A" }}</span>
+                        <small class="text-muted">Nombre:</small><br>
+                        <span class="fw-semibold">{{ object.nombre|default:"N/A" }}</span>
                     </div>
                     <div class="col-12">
                         <small class="text-muted">Registro TIC:</small><br>
