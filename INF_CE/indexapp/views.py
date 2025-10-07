@@ -5,6 +5,7 @@ from indexapp.models import Cableoperadores
 from facturacion.models import Facturacion
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def admin(request):
     return render(request,'indexapp/admin.html')
@@ -46,11 +47,12 @@ def cableoperador(request, pk=None):
         }
         return render(request, 'indexapp/cableoperador.html', object)
 
-class CableoperadoreCreateView(CreateView):
+
+class CableoperadoreCreateView(LoginRequiredMixin,CreateView):
     model = Cableoperadores
     form_class = CableoperadoresModelForm
     template_name = 'indexapp/CableoperadoresForm.html'
-    success_url = '/index/PRST/'
+    #success_url = '/index/PRST/'
     def form_valid(self, form):
         # 1. Accede al objeto User que está haciendo la solicitud.
         #    'self.request.user' contiene el objeto User logueado.
@@ -62,7 +64,12 @@ class CableoperadoreCreateView(CreateView):
 
         # 3. Llama al método base para guardar el objeto y manejar la redirección.
         return super().form_valid(form)
-class CableoperadoresUpdateView(UpdateView):
+    def get_success_url(self):
+        # El objeto que se acaba de actualizar está disponible como self.object
+        pk = self.object.pk
+        return reverse('indexapp:detalle_cableoperador', kwargs={'pk': pk})
+
+class CableoperadoresUpdateView(LoginRequiredMixin, UpdateView):
     model = Cableoperadores
     form_class = CableoperadoresModelForm
     template_name = 'indexapp/CableoperadoresForm.html'
