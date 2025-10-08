@@ -19,20 +19,20 @@
     {% csrf_token %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{ form.media }}
-    <div class="row g-3"> <div class="col-md-5">
+    <div class="row g-3"> <div class="col-md-5" style="font-weight: 700;">
             {{ form.nombre.label_tag }} {{ form.nombre }}           {% if form.nombre.errors %}{{ form.nombre.errors }}{% endif %}
         </div>
-        <div class="col-md-7">
+        <div class="col-md-4">
             {{ form.nombre_largo.label_tag }}
             {{ form.nombre_largo }}
             {% if form.nombre_largo.errors %}{{ form.nombre_largo.errors }}{% endif %}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{ form.NIT.label_tag }}
             {{ form.NIT }}
             {% if form.NIT.errors %}{{ form.NIT.errors }}{% endif %}
         </div>    
-        <div class="col-md-2">
+        <div class="col-md-4">
             {{ form.Digito_verificacion.label_tag }}
             {{ form.Digito_verificacion }}
             {% if form.Digito_verificacion.errors %}{{ form.Digito_verificacion.errors }}{% endif %}
@@ -42,62 +42,62 @@
             {{ form.RegistroTic }}
             {% if form.RegistroTic.errors %}{{ form.RegistroTic.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="font-weight: 700;">
             {{ form.CodigoInterno.label_tag }}
             {{ form.CodigoInterno }}
             {% if form.CodigoInterno.errors %}{{ form.CodigoInterno.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="font-weight: 700;">
             {{ form.pais.label_tag }}
             {{ form.pais }}
             {% if form.pais.errors %}{{ form.pais.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="font-weight: 700;">
             {{ form.ciudad.label_tag }}
             {{ form.ciudad }}
             {% if form.ciudad.errors %}{{ form.ciudad.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" style="font-weight: 700;">
             {{ form.direccion.label_tag }}
             {{ form.direccion }}
             {% if form.direccion.errors %}{{ form.direccion.errors }}{% endif %}
-        </div>
-        <div class="col-md-4">
-            {{ form.telefono.label_tag }}
-            {{ form.telefono }}
-            {% if form.telefono.errors %}{{ form.telefono.errors }}{% endif %}
-        </div>
-        <div class="col-md-4">
-            {{ form.correo.label_tag }}
-            {{ form.correo }}
-            {% if form.correo.errors %}{{ form.correo.errors }}{% endif %}
         </div>
         <div class="col-md-4">
             {{ form.Representante.label_tag }}
             {{ form.Representante }}
             {% if form.Representante.errors %}{{ form.Representante.errors }}{% endif %}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
+            {{ form.telefono.label_tag }}
+            {{ form.telefono }}
+            {% if form.telefono.errors %}{{ form.telefono.errors }}{% endif %}
+        </div>
+        <div class="col-md-4" style="font-weight: 700;">
+            {{ form.correo.label_tag }}
+            {{ form.correo }}
+            {% if form.correo.errors %}{{ form.correo.errors }}{% endif %}
+        </div>
+        <div class="col-md-4">
             {{ form.estado.label_tag }}
             {{ form.estado }}
             {% if form.estado.errors %}{{ form.estado.errors }}{% endif %}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             {{ form.vencimiento_factura.label_tag }}
             {{ form.vencimiento_factura }}
             {% if form.vencimiento_factura.errors %}{{ form.vencimiento_factura.errors }}{% endif %}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             {{ form.preliquidacion_num.label_tag }}
             {{ form.preliquidacion_num }}
             {% if form.preliquidacion_num.errors %}{{ form.preliquidacion_num.errors }}{% endif %}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
             {{ form.preliquidacion_letra.label_tag }}
             {{ form.preliquidacion_letra }}
             {% if form.preliquidacion_letra.errors %}{{ form.preliquidacion_letra.errors }}{% endif %}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             {{ form.respuesta_preliquidacion.label_tag }}
             {{ form.respuesta_preliquidacion }}
             {% if form.respuesta_preliquidacion.errors %}{{ form.respuesta_preliquidacion.errors }}{% endif %}
