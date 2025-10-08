@@ -34,8 +34,8 @@ class Cableoperadores(models.Model):
     ejecutiva = models.ForeignKey(User, on_delete=models.CASCADE)
     observaciones = models.TextField(max_length=1000, verbose_name='Observaciones (Obligatorio)')
     estado = models.CharField(max_length=100, choices=ESTADOS_CONTRATO, verbose_name='Estado (Obligatorio)')
-    vencimiento_factura = models.IntegerField(null=True, blank=True)
-    preliquidacion_num = models.IntegerField(null=True, blank=True, verbose_name='Preliquidacion Numero')
+    vencimiento_factura = models.PositiveIntegerField(null=True, blank=True)
+    preliquidacion_num = models.PositiveIntegerField(null=True, blank=True, verbose_name='Preliquidacion Numero')
     preliquidacion_letra = models.CharField(max_length=100,null=True, blank=True, verbose_name='Preliquidacion Letra')
     respuesta_preliquidacion = models.CharField(choices=Rliquidacion, max_length=100,null=True, blank=True, verbose_name='Respuesta Preliquidacion')
 

@@ -138,6 +138,6 @@ def detalle_contrato(request, pk):
 
     context = {
         'contrato': contrato,
-        'titulo': f"Detalle del Contrato {contrato.numero_contrato}",
+        'titulo': f"Detalle del Contrato {contrato.pk}",
     }
     return render(request, 'contratos/detalle_contrato.html', context)
