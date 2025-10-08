@@ -19,25 +19,25 @@
     {% csrf_token %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{ form.media }}
-    <div class="row g-3"> <div class="col-md-4">
+    <div class="row g-3"> <div class="col-md-5">
             {{ form.nombre.label_tag }} {{ form.nombre }}           {% if form.nombre.errors %}{{ form.nombre.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-7">
             {{ form.nombre_largo.label_tag }}
             {{ form.nombre_largo }}
             {% if form.nombre_largo.errors %}{{ form.nombre_largo.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             {{ form.NIT.label_tag }}
             {{ form.NIT }}
             {% if form.NIT.errors %}{{ form.NIT.errors }}{% endif %}
         </div>    
-        <div class="col-md-4">
+        <div class="col-md-2">
             {{ form.Digito_verificacion.label_tag }}
             {{ form.Digito_verificacion }}
             {% if form.Digito_verificacion.errors %}{{ form.Digito_verificacion.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             {{ form.RegistroTic.label_tag }}
             {{ form.RegistroTic }}
             {% if form.RegistroTic.errors %}{{ form.RegistroTic.errors }}{% endif %}
@@ -63,11 +63,6 @@
             {% if form.direccion.errors %}{{ form.direccion.errors }}{% endif %}
         </div>
         <div class="col-md-4">
-            {{ form.Representante.label_tag }}
-            {{ form.Representante }}
-            {% if form.Representante.errors %}{{ form.Representante.errors }}{% endif %}
-        </div>
-        <div class="col-md-4">
             {{ form.telefono.label_tag }}
             {{ form.telefono }}
             {% if form.telefono.errors %}{{ form.telefono.errors }}{% endif %}
@@ -78,29 +73,39 @@
             {% if form.correo.errors %}{{ form.correo.errors }}{% endif %}
         </div>
         <div class="col-md-4">
+            {{ form.Representante.label_tag }}
+            {{ form.Representante }}
+            {% if form.Representante.errors %}{{ form.Representante.errors }}{% endif %}
+        </div>
+        <div class="col-md-3">
             {{ form.estado.label_tag }}
             {{ form.estado }}
             {% if form.estado.errors %}{{ form.estado.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             {{ form.vencimiento_factura.label_tag }}
             {{ form.vencimiento_factura }}
             {% if form.vencimiento_factura.errors %}{{ form.vencimiento_factura.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             {{ form.preliquidacion_num.label_tag }}
             {{ form.preliquidacion_num }}
             {% if form.preliquidacion_num.errors %}{{ form.preliquidacion_num.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             {{ form.preliquidacion_letra.label_tag }}
             {{ form.preliquidacion_letra }}
             {% if form.preliquidacion_letra.errors %}{{ form.preliquidacion_letra.errors }}{% endif %}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             {{ form.respuesta_preliquidacion.label_tag }}
             {{ form.respuesta_preliquidacion }}
             {% if form.respuesta_preliquidacion.errors %}{{ form.respuesta_preliquidacion.errors }}{% endif %}
+        </div>
+        <div class="col-md-4">
+            {{ form.observaciones.label_tag }}
+            {{ form.observaciones }}
+            {% if form.observaciones.errors %}{{ form.observaciones.errors }}{% endif %}
         </div>
         
         

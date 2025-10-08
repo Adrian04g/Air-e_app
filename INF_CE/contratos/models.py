@@ -97,7 +97,6 @@ ESTADOS_CONTRATO = [
 
 class Contratos(models.Model):
     cableoperador = models.ForeignKey(Cableoperadores, on_delete=models.PROTECT)
-    numero_contrato = models.CharField(max_length=100, unique=True)
     tipo_contrato = models.CharField(max_length=100, choices=CLASIFICACION)
     estado_contrato = models.CharField(max_length=100, choices=ESTADOS_CONTRATO)
     duracion_anos = models.IntegerField()
@@ -112,4 +111,4 @@ class Contratos(models.Model):
         db_table = "Contratos"
     
     def __str__(self):
-        return f"Contrato {self.numero_contrato} de {self.cableoperador.nombre}"
+        return f"Contrato de {self.cableoperador.nombre}"
