@@ -84,17 +84,17 @@ CLASIFICACION = [
     ('tipo3' , 'tipo3'),
 ]
 ESTADOS_CONTRATO = [
-    ('Contratado' , 'Contratado'),
-    ('Finalizado' , 'Finalizado'),
-    ('En_Renovacion' , 'En Renovacion'),
-    ('Renovacion_firma_prst' , 'En Renovacion - Firma PRST'),
-    ('Renovacion_firma_air_e' , 'En Renovacion - Firma AIR-E'),
-    ('nuevo_firma_prst' , 'Nuevo - Firma PRST'),
-    ('nuevo_firma_air_e' , 'Nuevo - Firma AIR-E'),
-    ('En_Gestion' , 'En Gestion'),
-    ('Sin_usos' , 'Sin Usos'),
+    ('Vigente' , 'Vigente'),
+    ('Vencido' , 'Vencido'),
 ]
-
+TIPO_FECHA_RADICACION_CONTRATO = [
+    ('fija' , 'Fija'),
+    ('dinamica' , 'Dinámica'),
+]
+GARANTIA_CHOICES = [
+    ('poliza_rce', 'Póliza de RCE'),
+    ('poliza_cumplimiento', 'Póliza de Cumplimiento'),
+]
 class Contratos(models.Model):
     cableoperador = models.ForeignKey(Cableoperadores, on_delete=models.PROTECT)
     tipo_contrato = models.CharField(max_length=100, choices=CLASIFICACION)
@@ -103,9 +103,9 @@ class Contratos(models.Model):
     inicio_vigencia = models.DateField()
     fin_vigencia = models.DateField()
     valor_contrato = models.DecimalField(max_digits=20, decimal_places=2)
-    Garantia = models.CharField(max_length=100)
+    Garantia = models.CharField(max_length=100, choices=GARANTIA_CHOICES)
     fecha_radicacion = models.IntegerField()
-    tipo_fecha_radicacion = models.CharField(max_length=100)
+    tipo_fecha_radicacion = models.CharField(max_length=100, choices=TIPO_FECHA_RADICACION_CONTRATO)
     
     class Meta:
         db_table = "Contratos"

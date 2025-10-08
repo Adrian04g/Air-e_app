@@ -53,7 +53,7 @@
                     <!-- N° Contrato y Enlace a Detalle -->
                     <td class="font-bold text-indigo-700">
                         <a href="{% url 'contratos:detalle_contrato' pk=contrato.pk %}" class="hover:underline">
-                            {{ contrato.numero_contrato }}
+                            {{ contrato.pk }}
                         </a>
                     </td>
                     <!-- Cableoperador (usando el select_related de la vista) -->
