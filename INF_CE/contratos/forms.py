@@ -18,7 +18,7 @@ class ContratosForm(forms.ModelForm):
         model = Contratos
         # Especifica todos los campos de Contratos que quieres editar/registrar
         fields = [
-            'cableoperador', 'numero_contrato', 'tipo_contrato', 
+            'cableoperador', 'tipo_contrato', 
             'estado_contrato', 'duracion_anos', 'inicio_vigencia', 
             'fin_vigencia', 'valor_contrato', 'Garantia', 
             'fecha_radicacion', 'tipo_fecha_radicacion'
