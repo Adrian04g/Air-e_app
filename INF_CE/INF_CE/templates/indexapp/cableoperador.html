@@ -17,6 +17,9 @@
 {% block content %}
 <div class="row g-3 d-none d-md-block">
     <!-- Vista de tabla para desktop -->
+    <button type="submit" class="btn btn-primary border border-light border border-4">
+        <a class="text-white text-decoration-none" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a>
+    </button>
     <div class="card">
         <div class="mb-3 shadow-sm">
            <div class="card-header bg-primary text-white">
@@ -72,13 +75,31 @@
             </div>
         </div>
     </div>
-  <button type="submit" class="btn btn-primary border border-light border border-4">
-    <a class="text-white text-decoration-none" href="{% url 'indexapp:lista_cableoperadores' %}">Volver a lista de cable operadores</a>
-</button>
+
    <button type="submit" class="btn btn-primary border border-light border border-4">
     <a class="text-white text-decoration-none" href="{% url 'indexapp:editar_cableoperador' pk=object.pk %}">Editar cable operador</a>
 </button> 
-
+{% if contrato %}
+   <button type="submit" class="btn btn-primary border border-light border border-4">
+       <a href="{% url 'contratos:detalle_contrato' pk=contrato.pk %}" 
+          class="text-white text-decoration-none">
+             Ver Contrato
+       </a>
+</button> 
+<button type="submit" class="btn btn-primary border border-light border border-4">
+    <a href="{% url 'contratos:crear_contrato_vinculado' pk=object.pk %}" 
+    class="text-white text-decoration-none">
+      Crear Nuevo Contrato
+    </a>
+</button> 
+{% else %}
+<button type="submit" class="btn btn-primary border border-light border border-4">
+    <a href="{% url 'contratos:crear_contrato_vinculado' pk=object.pk %}" 
+    class="text-white text-decoration-none">
+      Registrar primer Contrato
+    </a>
+</button> 
+{% endif %}
     <center><h1 class="border border-light border-4 bg-secondary bg-gradient-subtle text-emphasis-dark text-center"><span class="h1 align-middle ms-3 admin">Facturas de {{ object.nombre }}</span></h1></center>
     <!-- facturas del cable operador -->
     {% for factura in facturas %}

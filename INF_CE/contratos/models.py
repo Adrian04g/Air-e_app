@@ -1,5 +1,6 @@
 from django.db import models
 from indexapp.models import Cableoperadores
+from django.db.models import Q, UniqueConstraint
 # Create your models here.
 class Cable(models.Model):
     # La clave OneToOneField asegura que solo haya un registro de Cable por Contrato
@@ -108,6 +109,14 @@ class Contratos(models.Model):
     tipo_fecha_radicacion = models.CharField(max_length=100, choices=TIPO_FECHA_RADICACION_CONTRATO)
     
     class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=['estado_contrato'],
+                # Aplica la restricción SOLAMENTE cuando estado_contrato es 'Vigente'
+                condition=Q(estado_contrato='Vigente'), 
+                name='unique_vigente_contrato'
+            )
+        ]
         db_table = "Contratos"
     
     def __str__(self):

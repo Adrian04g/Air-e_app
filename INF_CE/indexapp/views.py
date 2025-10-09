@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from indexapp.forms import CableoperadoresModelForm
 from indexapp.models import Cableoperadores
+from contratos.models import Contratos
 from facturacion.models import Facturacion
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
@@ -42,9 +43,11 @@ def cableoperador(request, pk=None):
     if pk:
         cableoperador = Cableoperadores.objects.get(pk=pk)
         facturas = Facturacion.objects.filter(Nombre_prst=cableoperador).order_by('-Fecha_fact')
+        contrato = Contratos.objects.filter(cableoperador=cableoperador).first()
         object = {
             'object': cableoperador,
-            'facturas': facturas    
+            'facturas': facturas,
+            'contrato': contrato
         }
         return render(request, 'indexapp/cableoperador.html', object)
 

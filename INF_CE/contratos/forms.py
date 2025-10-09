@@ -12,8 +12,8 @@ from .models import (
 # -------------------------
 # 1. Formulario Principal (Contratos)
 # -------------------------
-class ContratosForm(forms.ModelForm):
-    """Formulario para la creación o edición del contrato principal."""
+"""class ContratosForm(forms.ModelForm):
+    # Formulario para la creación o edición del contrato principal.
     class Meta:
         model = Contratos
         # Especifica todos los campos de Contratos que quieres editar/registrar
@@ -34,9 +34,35 @@ class ContratosForm(forms.ModelForm):
         self.fields['cableoperador'].queryset = Cableoperadores.objects.all().order_by('nombre')
         # Puedes añadir clases de CSS aquí para mejor estilo
         for field_name in self.fields:
+            self.fields[field_name].widget.attrs.update({'class': 'form-input w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'})"""
+# -------------------------
+# 1. Formulario contrato individual
+# -------------------------
+class ContratosFormForCableoperador(forms.ModelForm):
+    """Formulario para la creación o edición del contrato principal."""
+    class Meta:
+        model = Contratos
+        # Especifica todos los campos de Contratos que quieres editar/registrar
+        fields = [
+            'tipo_contrato', 
+            'estado_contrato', 'duracion_anos', 'inicio_vigencia', 
+            'fin_vigencia', 'valor_contrato', 'Garantia', 
+            'fecha_radicacion', 'tipo_fecha_radicacion'
+        ]
+        widgets = {
+            'inicio_vigencia': forms.DateInput(attrs={'type': 'date'}),
+            'fin_vigencia': forms.DateInput(attrs={'type': 'date'}),
+        }
+    
+    # Añadimos un queryset para limitar las opciones de cableoperadores
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'cableoperador' in self.fields:
+            # Esta lógica SOLO se ejecuta si el campo está presente (Modo Independiente).
+            self.fields['cableoperador'].queryset = Cableoperadores.objects.all().order_by('nombre')
+        # Puedes añadir clases de CSS aquí para mejor estilo
+        for field_name in self.fields:
             self.fields[field_name].widget.attrs.update({'class': 'form-input w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'})
-
-
 # -------------------------
 # 2. Formsets para Recursos (Relaciones Uno a Uno)
 # -------------------------
