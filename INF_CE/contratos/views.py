@@ -11,7 +11,8 @@ from indexapp.models import Cableoperadores
 # Asumo que estos formularios y formsets existen en forms.py
 # Nota: La lista de imports del usuario usa CableFormSet, etc., en lugar de CableInlineFormSet.
 from .forms import (
-    ContratosForm, CableFormSet, CajaEmpalmeFormSet, ReservaFormSet, NapFormSet
+    ContratosForm,
+    CableFormSet, CajaEmpalmeFormSet, ReservaFormSet, NapFormSet
 )
 
 # Definición de las tuplas de Formset y Nombre de Clase de Recurso
@@ -118,10 +119,12 @@ def crear_contrato_con_recursos(request, pk=None):
         cableoperador_instance = get_object_or_404(Cableoperadores, pk=pk)
         form_class = ContratosFormForCableoperador
         titulo = f"Registrar Contrato para {cableoperador_instance.nombre}"
+        nombre_cableoperador = cableoperador_instance.nombre
     else:
         # Modo Independiente: Usar el formulario completo
         form_class = ContratosForm
         titulo = "Registrar Contrato y Usos (Independiente)"
+        nombre_cableoperador = None
     
     form = form_class(request.POST or None)
     
@@ -172,6 +175,7 @@ def crear_contrato_con_recursos(request, pk=None):
                 print(f"Error al guardar la transacción: {e}") 
                 # Continúa hacia el renderizado con los errores
 
+
     # 7. Contexto
     context = {
         'form': form,
@@ -181,6 +185,7 @@ def crear_contrato_con_recursos(request, pk=None):
         'reserva_formset': formsets['reserva'],
         'nap_formset': formsets['nap'],
         'titulo': titulo,
+        'nombre_cableoperador': nombre_cableoperador,
     }
     return render(request, 'contratos/crear_contrato.html', context)
 

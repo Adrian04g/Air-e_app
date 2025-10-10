@@ -96,25 +96,67 @@ GARANTIA_CHOICES = [
     ('poliza_rce', 'Póliza de RCE'),
     ('poliza_cumplimiento', 'Póliza de Cumplimiento'),
 ]
+VIGENCIA_AMPARO_CHOICES = [
+    ('Igual_a_Duracion_de_Contrato_mas_12_Meses' , 'Igual a Duración de Contrato + 12 Meses'),
+    ('Igual_a_Duracion_de_Contrato_mas_6_Meses' , 'Igual a Duración de Contrato + 6 Meses'),
+    ('Igual_a_Duracion_de_Contrato_mas_4_Meses' , 'Igual a Duración de Contrato + 4 Meses'),
+    ('Igual_a_Duracion_de_Contrato_mas_2_Meses' , 'Igual a Duración de Contrato + 2 Meses'),
+]
+MONTO_ASEGURADO_POLIZA_CUMPLIMIENTO_CHOICES = [
+    ('15%_valor_contrato', '15% Valor del Contrato'),
+    ('20%_valor_contrato', '20% Valor del Contrato'),
+    ('30%_valor_contrato', '30% Valor del Contrato'),
+    ('20%_valor_base_constitucion_poliza', '20% Valor base de Constitución de Póliza'),
+    ('30%_valor_base_constitucion_poliza', '30% Valor base de Constitución de Póliza'),
+]
+MONTO_ASEGURADO_POLIZA_RCE_CHOICES = [
+    ('no_inferior_100_SMLMV', 'No inferior a 100 SMLMV'),
+    ('no_inferior_200_SMLMV', 'No inferior a 200 SMLMV'),
+    ('no_inferior_300_SMLMV', 'No inferior a 300 SMLMV'),
+]
 class Contratos(models.Model):
     cableoperador = models.ForeignKey(Cableoperadores, on_delete=models.PROTECT)
     tipo_contrato = models.CharField(max_length=100, choices=CLASIFICACION)
     estado_contrato = models.CharField(max_length=100, choices=ESTADOS_CONTRATO)
-    duracion_anos = models.IntegerField()
+    duracion_anos = models.IntegerField(verbose_name="Duración en años")
     inicio_vigencia = models.DateField()
     fin_vigencia = models.DateField()
     valor_contrato = models.DecimalField(max_digits=20, decimal_places=2)
-    Garantia = models.CharField(max_length=100, choices=GARANTIA_CHOICES)
+    # Campos para la Póliza de Cumplimiento
+    numero_poliza_cumplimiento = models.CharField(max_length=100, blank=True, null=True)
+    vigencia_amparo_poliza_cumplimiento = models.CharField(max_length=100, blank=True, null=True, choices=VIGENCIA_AMPARO_CHOICES)
+    inicio_vigencia_poliza_cumplimiento = models.DateField(blank=True, null=True)
+    fin_vigencia_poliza_cumplimiento = models.DateField(blank=True, null=True)
+    monto_asegurado_poliza_cumplimiento = models.CharField(max_length=100, blank=True, null=True, choices=MONTO_ASEGURADO_POLIZA_CUMPLIMIENTO_CHOICES)
+    valor_monto_asegurado_poliza_cumplimiento = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    valor_asegurado_poliza_cumplimiento = models.CharField(max_length=100, blank=True, null=True)
+    inicio_amparo_poliza_cumplimiento = models.DateField(blank=True, null=True)
+    fin_amparo_poliza_cumplimiento = models.DateField(blank=True, null=True)
+    expedicion_poliza_cumplimiento = models.DateField(blank=True, null=True)
+    # Campos para la Póliza de RCE
+    numero_poliza_rce = models.CharField(max_length=100, blank=True, null=True)
+    vigencia_amparo_poliza_rce = models.CharField(max_length=100, blank=True, null=True, choices=VIGENCIA_AMPARO_CHOICES)
+    inicio_vigencia_poliza_rce = models.DateField(blank=True, null=True)
+    fin_vigencia_poliza_rce = models.DateField(blank=True, null=True)
+    monto_asegurado_poliza_rce = models.CharField(max_length=100, blank=True, null=True, choices=MONTO_ASEGURADO_POLIZA_RCE_CHOICES)
+    valor_monto_asegurado_poliza_rce = models.DecimalField(max_digits=20, decimal_places=2, blank=True, null=True)
+    valor_asegurado_poliza_rce = models.CharField(max_length=100, blank=True, null=True)
+    inicio_amparo_poliza_rce = models.DateField(blank=True, null=True)
+    fin_amparo_poliza_rce = models.DateField(blank=True, null=True)
+    expedicion_poliza_rce = models.DateField(blank=True, null=True)
+    tomador = models.CharField(max_length=100, blank=True, null=True)
+    aseguradora = models.CharField(max_length=100, blank=True, null=True)
     fecha_radicacion = models.IntegerField()
     tipo_fecha_radicacion = models.CharField(max_length=100, choices=TIPO_FECHA_RADICACION_CONTRATO)
+    fecha_preliquidacion = models.DateField(blank=True, null=True)
     
     class Meta:
         constraints = [
             UniqueConstraint(
                 fields=['estado_contrato'],
                 # Aplica la restricción SOLAMENTE cuando estado_contrato es 'Vigente'
-                condition=Q(estado_contrato='Vigente'), 
-                name='unique_vigente_contrato'
+                condition=Q(estado_contrato='Vencido'), 
+                name='unique_Vencido_contrato'
             )
         ]
         db_table = "Contratos"
