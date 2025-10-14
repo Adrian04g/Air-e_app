@@ -5,11 +5,11 @@ name = "pypi"
 
 [packages]
 mysqlclient = "*"
-django-select2 = "*"
 djangorestframework-xml = "*"
 djoser = "*"
 djangorestframework = "*"
 django = "*"
+django-select2 = "*"
 
 [dev-packages]
 

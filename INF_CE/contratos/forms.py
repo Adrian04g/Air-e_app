@@ -40,24 +40,35 @@ class ContratosForm(forms.ModelForm):
         ]
         widgets = {
             'inicio_vigencia': forms.DateInput(attrs={ 'type': 'date',
-                'class': 'form-control',}),
+                'class': 'form-control',
+                'placeholder': 'Inicio de Vigencia'}),
             'fin_vigencia': forms.DateInput(attrs={'type': 'date'}),
             'tipo_contrato' : forms.Select(attrs={'class': 'form-control'}),
-            'duracion_anos' : forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
+            'duracion_anos' : forms.NumberInput(attrs={'class': 'InputNumero'}),
             # Campos de la Póliza de Cumplimiento
             'inicio_vigencia_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'fin_vigencia_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'inicio_amparo_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'fin_amparo_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'expedicion_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
+            'numero_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar numero de Póliza'}),
+            'vigencia_amparo_poliza_cumplimiento' : forms.Select(attrs={'class': 'form-control'}),
+            'valor_asegurado_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor asegurado'}),
+            'valor_monto_asegurado_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor monto asegurado'}),
             # Campos de la Póliza de RCE
             'inicio_vigencia_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'fin_vigencia_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'inicio_amparo_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'fin_amparo_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'expedicion_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
-            'tomador' : forms.TextInput(attrs={'class': 'form-input'}),
-            'aseguradora' : forms.TextInput(attrs={'class': 'form-input'}),
+            'numero_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar numero de Póliza'}),
+            'vigencia_amparo_poliza_rce' : forms.Select(attrs={'class': 'form-control'}),
+            'valor_asegurado_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor asegurado'}),
+            'valor_monto_asegurado_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor monto asegurado'}),
+            'tomador' : forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Ingresar tomador'}),
+            'aseguradora' : forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Ingresar aseguradora'}),
+            'fecha_radicacion' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Numero de Radicación'}),
+            'tipo_fecha_radicacion' : forms.Select(attrs={'class': 'form-control'})
         }
     
     # Añadimos un queryset para limitar las opciones de cableoperadores
@@ -97,25 +108,36 @@ class ContratosFormForCableoperador(forms.ModelForm):
             'tomador', 'aseguradora'
         ]
         widgets = {
-            'inicio_vigencia': forms.DateInput(attrs={'type': 'date'}),
-            'estado_contrato' : forms.Select(attrs={'class':'form-control'}),
+            'inicio_vigencia': forms.DateInput(attrs={ 'type': 'date',
+                'class': 'form-control',
+                'placeholder': 'Inicio de Vigencia'}),
             'fin_vigencia': forms.DateInput(attrs={'type': 'date'}),
             'tipo_contrato' : forms.Select(attrs={'class': 'form-control'}),
-            'duracion_anos' : forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
+            'duracion_anos' : forms.NumberInput(attrs={'class': 'InputNumero'}),
             # Campos de la Póliza de Cumplimiento
             'inicio_vigencia_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'fin_vigencia_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'inicio_amparo_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'fin_amparo_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
             'expedicion_poliza_cumplimiento' : forms.DateInput(attrs={'type': 'date'}),
+            'numero_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar numero de Póliza'}),
+            'vigencia_amparo_poliza_cumplimiento' : forms.Select(attrs={'class': 'form-control'}),
+            'valor_asegurado_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor asegurado'}),
+            'valor_monto_asegurado_poliza_cumplimiento' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor monto asegurado'}),
             # Campos de la Póliza de RCE
             'inicio_vigencia_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'fin_vigencia_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'inicio_amparo_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'fin_amparo_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
             'expedicion_poliza_rce' : forms.DateInput(attrs={'type': 'date'}),
-            'tomador' : forms.TextInput(attrs={'class': 'form-input'}),
-            'aseguradora' : forms.TextInput(attrs={'class': 'form-input'}),
+            'numero_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar numero de Póliza'}),
+            'vigencia_amparo_poliza_rce' : forms.Select(attrs={'class': 'form-control'}),
+            'valor_asegurado_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor asegurado'}),
+            'valor_monto_asegurado_poliza_rce' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Ingresar valor monto asegurado'}),
+            'tomador' : forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Ingresar tomador'}),
+            'aseguradora' : forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Ingresar aseguradora'}),
+            'fecha_radicacion' : forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Numero de Radicación'}),
+            'tipo_fecha_radicacion' : forms.Select(attrs={'class': 'form-control'})
         }
     
     # Añadimos un queryset para limitar las opciones de cableoperadores
