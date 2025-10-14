@@ -200,7 +200,7 @@ def lista_contratos(request):
     Usa select_related() para optimizar la carga del Cableoperador.
     """
     # Consulta optimizada para cargar la información del cableoperador en una sola consulta
-    contratos = Contratos.objects.all().select_related('cableoperador')
+    contratos = Contratos.objects.all().select_related('cableoperador').order_by('-estado_contrato')
     return render(request, 'contratos/lista_contratos.html', {'object_list': contratos})
 
 
@@ -211,6 +211,48 @@ def lista_contratos(request):
 def detalle_contrato(request, pk):
     """
     Vista de detalle para un Contrato, mostrando toda su información y recursos asociados.
+    """
+
+    # Consulta optimizada para cargar el Contrato y todos sus recursos en una sola consulta
+    contrato = get_object_or_404(
+        Contratos.objects.select_related(
+            'cable',           # Acceso directo al OneToOneField Cable
+            'caja_empalme',    # Acceso directo a Caja_empalme
+            'reserva',         # Acceso directo a Reserva
+            'nap',             # Acceso directo a Nap
+            'cableoperador'    # Acceso a Cableoperadores
+        ), 
+        pk=pk
+    )
+    
+    # 2. Lógica de Redirección: Si el contrato NO es 'Vigente'
+    if contrato.estado_contrato != 'Vigente':
+        
+        # 3. Buscar el Contrato que SÍ está 'Vigente'
+        contrato_vigente = Contratos.objects.filter(estado_contrato='Vigente').first()
+        
+        # 4. Si encontramos el Vigente, redirigimos a su URL de detalle
+        if contrato_vigente:
+            # IMPORTANTE: Reemplaza 'nombre_de_tu_url_detalle' con el nombre que 
+            # le diste a la URL de esta vista en tu archivo urls.py (ej: 'contratos:detalle_contrato').
+            return redirect('contratos:detalle_contrato', pk=contrato_vigente.pk)
+        
+        # Si el contrato solicitado no es Vigente y no existe NINGÚN Vigente:
+        # Aquí la vista continuará y mostrará el contrato solicitado (pk)
+        # ya que no hay un Vigente para mostrar.
+    
+    # 5. Si el contrato solicitado es 'Vigente' o no se encontró Vigente para redireccionar,
+    # se procede con el renderizado normal.
+    context = {
+        'contrato': contrato,
+        'titulo': f"Detalle del Contrato {contrato.pk}",
+        'p': ''
+    }
+    return render(request, 'contratos/detalle_contrato.html', context)
+
+def detalle_contrato_elegido(request, pk):
+    """
+    Vista de detalle para un Contrato Elegido.
     """
     # Consulta optimizada para cargar el Contrato y todos sus recursos en una sola consulta
     contrato = get_object_or_404(
@@ -223,10 +265,28 @@ def detalle_contrato(request, pk):
         ), 
         pk=pk
     )
-
-    context = {
+    
+    # 2. Lógica de Redirección: Si el contrato NO es 'Vigente'
+    if contrato.estado_contrato:
+        
+        # 3. Buscar el Contrato que SÍ está 'Vigente'
+        contrato_vigente = Contratos.objects.filter(pk=contrato.pk).first()
+        
+        # 4. Si encontramos el Vigente, redirigimos a su URL de detalle
+        if contrato_vigente:
+            # IMPORTANTE: Reemplaza 'nombre_de_tu_url_detalle' con el nombre que 
+            # le diste a la URL de esta vista en tu archivo urls.py (ej: 'contratos:detalle_contrato').
+            context = {
         'contrato': contrato,
         'titulo': f"Detalle del Contrato {contrato.pk}",
         'p': ''
-    }
-    return render(request, 'contratos/detalle_contrato.html', context)
+        }
+        return render(request, 'contratos/detalle_contrato.html', context)
+        
+        # Si el contrato solicitado no es Vigente y no existe NINGÚN Vigente:
+        # Aquí la vista continuará y mostrará el contrato solicitado (pk)
+        # ya que no hay un Vigente para mostrar.
+    
+    # 5. Si el contrato solicitado es 'Vigente' o no se encontró Vigente para redireccionar,
+    # se procede con el renderizado normal.
+    

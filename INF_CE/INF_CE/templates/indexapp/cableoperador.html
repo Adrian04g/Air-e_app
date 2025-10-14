@@ -67,6 +67,10 @@
                         <small class="text-muted" style="font-weight: 700;">Correo:</small><br>
                         <span class="fw-semibold">{{ object.correo|default:"N/A" }}</span>
                     </div>
+                    <div class="col-12">
+                        <small class="text-muted" style="font-weight: 700;">Estado:</small><br>
+                        <span class="fw-semibold">{{ object.estado }} </span>
+                    </div><br>
                     <div class="col-2">
                         <small class="text-muted" style="font-weight: 700;">Ejecutiva:</small><br>
                         <span class="fw-semibold">{{ object.ejecutiva.first_name }} {{ object.ejecutiva.last_name }}</span>

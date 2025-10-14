@@ -1,6 +1,7 @@
 from django.db import models
 from indexapp.models import Cableoperadores
 from django.db.models import Q, UniqueConstraint
+from django.core.exceptions import ValidationError
 # Create your models here.
 class Cable(models.Model):
     # La clave OneToOneField asegura que solo haya un registro de Cable por Contrato
@@ -149,17 +150,29 @@ class Contratos(models.Model):
     fecha_radicacion = models.IntegerField(verbose_name="Fecha de Radicación")
     tipo_fecha_radicacion = models.CharField(max_length=100, choices=TIPO_FECHA_RADICACION_CONTRATO, verbose_name="Tipo de Fecha de Radicación")
     fecha_preliquidacion = models.DateField(blank=True, null=True, verbose_name="Fecha de Preliquidación")
-
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=['estado_contrato'],
-                # Aplica la restricción SOLAMENTE cuando estado_contrato es 'Vigente'
-                condition=Q(estado_contrato='Vencido'), 
-                name='unique_Vencido_contrato'
+    def clean(self):
+        """
+        Aplica la regla de negocio: solo puede haber un contrato 'Vigente' 
+        por cada Cableoperador.
+        """
+        if self.estado_contrato == 'Vigente':
+            
+            # Buscar si YA existe un contrato 'Vigente' para este Cableoperador
+            vigente_exists = Contratos.objects.filter(
+                estado_contrato='Vigente', 
+                cableoperador=self.cableoperador # Restringe por Cableoperador
             )
-        ]
+            
+            # Excluir la instancia actual (importante para la edición)
+            if self.pk:
+                vigente_exists = vigente_exists.exclude(pk=self.pk)
+            
+            if vigente_exists.exists():
+                raise ValidationError(
+                    {'estado_contrato': 'Este Cableoperador ya tiene un contrato marcado como "Vigente".'}
+                )
+    class Meta: 
         db_table = "Contratos"
     
     def __str__(self):
-        return f"Contrato de {self.cableoperador.nombre}"
+        return f"Contrato de {self.cableoperador.nombre} {self.estado_contrato}"
