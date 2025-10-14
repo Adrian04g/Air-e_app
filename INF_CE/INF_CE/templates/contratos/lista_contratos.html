@@ -33,25 +33,22 @@
     </div>
 
     <!-- TABLA DE CONTRATOS -->
-    <div class="card overflow-x-auto""p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">
+    <div class="card overflow-x-auto p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">
         {% if object_list %}
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="table-header"">
+            <thead class="table-header">
                 <tr>
-                    <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Contrato</th>
                     <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Cableoperador</th>
                     <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Estado</th>
                     <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Tipo</th>
                     <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Valor</th>
                     <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info">Vigencia</th>
-                    
+                    <th class="p-1 mb-2 bg-primary-subtle text-primary-emphasis text-center border border-info"></th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 {% for contrato in object_list %}
                 <tr class="hover:bg-indigo-50 table-row">
-                    <!-- N° Contrato y Enlace a Detalle -->
-                    
                     </td>
                     <!-- Cableoperador (usando el select_related de la vista) -->
                     <td>{{ contrato.cableoperador.nombre }}</td>
@@ -63,9 +60,9 @@
                     <td>${{ contrato.valor_contrato|floatformat:2 }}</td>
                     <!-- Vigencia -->
                     <td>
-                        {{ contrato.inicio_vigencia|date:"d M Y" }} 
+                        {{ contrato.inicio_vigencia|date:"d/M/Y" }} 
                         a 
-                        {{ contrato.fin_vigencia|date:"d M Y" }}
+                        {{ contrato.fin_vigencia|date:"d/M/Y" }}
                     </td>
                     <!-- Botón de Acciones Rápido -->
                     <td>
