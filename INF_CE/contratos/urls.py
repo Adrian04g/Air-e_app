@@ -15,5 +15,9 @@ urlpatterns = [
     
     # 2. URL para Creación Vinculada (Con PK)
     path('crear/<int:pk>/', views.crear_contrato_con_recursos, name='crear_contrato_vinculado'),
-    
+    # contratos/urls.py
+
+    # ... otras URLs ...
+    path('editar/<int:pk>/', views.actualizar_contrato_con_recursos, name='actualizar_contrato'),
+
 ]

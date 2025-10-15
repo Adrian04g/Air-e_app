@@ -289,4 +289,80 @@ def detalle_contrato_elegido(request, pk):
     
     # 5. Si el contrato solicitado es 'Vigente' o no se encontró Vigente para redireccionar,
     # se procede con el renderizado normal.
+# contratos/views.py (Continuación de tu archivo)
+
+
+from django.core.exceptions import ObjectDoesNotExist # Importar para manejo de OneToOne
+
+# ... Tus imports existentes (Contratos, Cableoperadores, ContratosForm, RESOURCE_FORMSETS_INFO, etc.) ...
+
+def actualizar_contrato_con_recursos(request, pk):
+    """
+    Maneja la edición de un Contrato existente y sus recursos asociados 
+    (Cable, Caja_empalme, Reserva, Nap), asegurando la atomicidad.
+    """
+    # 1. Obtener la instancia del Contrato a editar
+    contrato_instance = get_object_or_404(Contratos, pk=pk)
     
+    # 2. Inicializar el formulario con la instancia
+    # Usamos ContratosForm ya que la edición generalmente requiere todos los campos.
+    form_class = ContratosFormForCableoperador
+    form = form_class(request.POST or None, instance=contrato_instance)
+    
+    # 3. Inicializar los formsets con la instancia
+    formsets = {}
+    for name, fs_class, _ in RESOURCE_FORMSETS_INFO:
+        # Al pasar 'instance=contrato_instance', Django carga los datos existentes.
+        formsets[name] = fs_class(request.POST or None, instance=contrato_instance, prefix=name)
+        
+    formset_list = list(formsets.values())
+    
+    if request.method == 'POST':
+        
+        # 4. Validar el formulario principal y todos los formsets
+        if form.is_valid() and all(fs.is_valid() for fs in formset_list):
+            
+            try:
+                with transaction.atomic():
+                    
+                    # 5. Guardar el Contrato principal (actualiza la instancia existente)
+                    contrato = form.save() 
+                    
+                    # 6. Guardar Recursos y asegurar la existencia de OneToOne
+                    for name, fs_class, ResourceModel in RESOURCE_FORMSETS_INFO:
+                        
+                        # Re-inicializar el formset con los datos POST y la instancia
+                        current_formset = fs_class(request.POST, instance=contrato, prefix=name)
+                        
+                        # Guardar instancias modificadas (maneja edición y borrado)
+                        # Nota: Si usas ModelFormSet, .save() maneja las eliminaciones marcadas.
+                        current_formset.save()
+                        
+                        # Lógica para asegurar que SIEMPRE exista un registro de Recurso (OneToOne)
+                        try:
+                            # Intenta obtener el recurso. Si existe, no hace nada.
+                            ResourceModel.objects.get(contrato=contrato)
+                        except ResourceModel.DoesNotExist:
+                            # Si no existe (porque se eliminó o nunca se creó), lo creamos con defaults.
+                            new_resource = ResourceModel(contrato=contrato)
+                            new_resource.save()
+                            
+                    # 7. Redirección al detalle del contrato editado
+                    return redirect('contratos:detalle_contrato', pk=contrato.pk)
+
+            except Exception as e:
+                print(f"Error al actualizar la transacción: {e}") 
+                # Continúa al renderizado con errores
+
+    # 8. Contexto para renderizar la plantilla (si es GET o POST fallido)
+    context = {
+        'form': form,
+        'cableoperador': contrato_instance.cableoperador, 
+        'cable_formset': formsets['cable'],
+        'caja_empalme_formset': formsets['caja'],
+        'reserva_formset': formsets['reserva'],
+        'nap_formset': formsets['nap'],
+        'titulo': f"Editar Contrato y Usos: {contrato_instance.cableoperador.nombre}",
+    }
+    # Se recomienda usar la misma plantilla (crear_contrato.html) para edición
+    return render(request, 'contratos/crear_contrato.html', context)
