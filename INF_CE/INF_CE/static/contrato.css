@@ -1,0 +1,71 @@
+.campos {
+    margin: 4px;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(85, 241, 255);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: block;
+    font-weight: 500;
+    border: 2px solid #d591f2;
+    padding-left: 15px;
+    border-bottom-width: 2px;
+    ;
+    transition: all 0.3s ease;
+
+}
+
+.title-contrato {
+    font-size: 25px;
+    font-weight: 500;
+    font-weight: 700;
+    color: rgb(73, 63, 91);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.poliza {
+    margin: 4px;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(96, 235, 247);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: block;
+    font-weight: 500;
+    border: 2px solid #d477ff;
+    padding-left: 15px;
+    border-bottom-width: 2px;
+    ;
+    transition: all 0.3s ease;
+}
+
+/* .poliza{
+    margin: 2px;
+    padding:0;
+    box-sizing: border-box;
+    display:flex;
+    height:10vh;
+    justify-content:center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(199, 229, 255);
+   border-radius: 5px;
+    margin-bottom: 15px;
+     display: block;
+    font-weight: 500;
+   border: 2px solid #ccc;
+   padding-left: 15px;
+   border-bottom-width:2px; ;
+   transition: all 0.3s ease;
+} */
