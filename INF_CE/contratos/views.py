@@ -200,7 +200,7 @@ def lista_contratos(request):
     Usa select_related() para optimizar la carga del Cableoperador.
     """
     # Consulta optimizada para cargar la información del cableoperador en una sola consulta
-    contratos = Contratos.objects.all().select_related('cableoperador')
+    contratos = Contratos.objects.all().select_related('cableoperador').order_by('-estado_contrato')
     return render(request, 'contratos/lista_contratos.html', {'object_list': contratos})
 
 
@@ -211,6 +211,48 @@ def lista_contratos(request):
 def detalle_contrato(request, pk):
     """
     Vista de detalle para un Contrato, mostrando toda su información y recursos asociados.
+    """
+
+    # Consulta optimizada para cargar el Contrato y todos sus recursos en una sola consulta
+    contrato = get_object_or_404(
+        Contratos.objects.select_related(
+            'cable',           # Acceso directo al OneToOneField Cable
+            'caja_empalme',    # Acceso directo a Caja_empalme
+            'reserva',         # Acceso directo a Reserva
+            'nap',             # Acceso directo a Nap
+            'cableoperador'    # Acceso a Cableoperadores
+        ), 
+        pk=pk
+    )
+    
+    # 2. Lógica de Redirección: Si el contrato NO es 'Vigente'
+    if contrato.estado_contrato != 'Vigente':
+        
+        # 3. Buscar el Contrato que SÍ está 'Vigente'
+        contrato_vigente = Contratos.objects.filter(estado_contrato='Vigente').first()
+        
+        # 4. Si encontramos el Vigente, redirigimos a su URL de detalle
+        if contrato_vigente:
+            # IMPORTANTE: Reemplaza 'nombre_de_tu_url_detalle' con el nombre que 
+            # le diste a la URL de esta vista en tu archivo urls.py (ej: 'contratos:detalle_contrato').
+            return redirect('contratos:detalle_contrato', pk=contrato_vigente.pk)
+        
+        # Si el contrato solicitado no es Vigente y no existe NINGÚN Vigente:
+        # Aquí la vista continuará y mostrará el contrato solicitado (pk)
+        # ya que no hay un Vigente para mostrar.
+    
+    # 5. Si el contrato solicitado es 'Vigente' o no se encontró Vigente para redireccionar,
+    # se procede con el renderizado normal.
+    context = {
+        'contrato': contrato,
+        'titulo': f"Detalle del Contrato {contrato.pk}",
+        'p': ''
+    }
+    return render(request, 'contratos/detalle_contrato.html', context)
+
+def detalle_contrato_elegido(request, pk):
+    """
+    Vista de detalle para un Contrato Elegido.
     """
     # Consulta optimizada para cargar el Contrato y todos sus recursos en una sola consulta
     contrato = get_object_or_404(
@@ -223,10 +265,104 @@ def detalle_contrato(request, pk):
         ), 
         pk=pk
     )
-
-    context = {
+    
+    # 2. Lógica de Redirección: Si el contrato NO es 'Vigente'
+    if contrato.estado_contrato:
+        
+        # 3. Buscar el Contrato que SÍ está 'Vigente'
+        contrato_vigente = Contratos.objects.filter(pk=contrato.pk).first()
+        
+        # 4. Si encontramos el Vigente, redirigimos a su URL de detalle
+        if contrato_vigente:
+            # IMPORTANTE: Reemplaza 'nombre_de_tu_url_detalle' con el nombre que 
+            # le diste a la URL de esta vista en tu archivo urls.py (ej: 'contratos:detalle_contrato').
+            context = {
         'contrato': contrato,
         'titulo': f"Detalle del Contrato {contrato.pk}",
         'p': ''
+        }
+        return render(request, 'contratos/detalle_contrato.html', context)
+        
+        # Si el contrato solicitado no es Vigente y no existe NINGÚN Vigente:
+        # Aquí la vista continuará y mostrará el contrato solicitado (pk)
+        # ya que no hay un Vigente para mostrar.
+    
+    # 5. Si el contrato solicitado es 'Vigente' o no se encontró Vigente para redireccionar,
+    # se procede con el renderizado normal.
+# contratos/views.py (Continuación de tu archivo)
+
+
+from django.core.exceptions import ObjectDoesNotExist # Importar para manejo de OneToOne
+
+# ... Tus imports existentes (Contratos, Cableoperadores, ContratosForm, RESOURCE_FORMSETS_INFO, etc.) ...
+
+def actualizar_contrato_con_recursos(request, pk):
+    """
+    Maneja la edición de un Contrato existente y sus recursos asociados 
+    (Cable, Caja_empalme, Reserva, Nap), asegurando la atomicidad.
+    """
+    # 1. Obtener la instancia del Contrato a editar
+    contrato_instance = get_object_or_404(Contratos, pk=pk)
+    
+    # 2. Inicializar el formulario con la instancia
+    # Usamos ContratosForm ya que la edición generalmente requiere todos los campos.
+    form_class = ContratosFormForCableoperador
+    form = form_class(request.POST or None, instance=contrato_instance)
+    
+    # 3. Inicializar los formsets con la instancia
+    formsets = {}
+    for name, fs_class, _ in RESOURCE_FORMSETS_INFO:
+        # Al pasar 'instance=contrato_instance', Django carga los datos existentes.
+        formsets[name] = fs_class(request.POST or None, instance=contrato_instance, prefix=name)
+        
+    formset_list = list(formsets.values())
+    
+    if request.method == 'POST':
+        
+        # 4. Validar el formulario principal y todos los formsets
+        if form.is_valid() and all(fs.is_valid() for fs in formset_list):
+            
+            try:
+                with transaction.atomic():
+                    
+                    # 5. Guardar el Contrato principal (actualiza la instancia existente)
+                    contrato = form.save() 
+                    
+                    # 6. Guardar Recursos y asegurar la existencia de OneToOne
+                    for name, fs_class, ResourceModel in RESOURCE_FORMSETS_INFO:
+                        
+                        # Re-inicializar el formset con los datos POST y la instancia
+                        current_formset = fs_class(request.POST, instance=contrato, prefix=name)
+                        
+                        # Guardar instancias modificadas (maneja edición y borrado)
+                        # Nota: Si usas ModelFormSet, .save() maneja las eliminaciones marcadas.
+                        current_formset.save()
+                        
+                        # Lógica para asegurar que SIEMPRE exista un registro de Recurso (OneToOne)
+                        try:
+                            # Intenta obtener el recurso. Si existe, no hace nada.
+                            ResourceModel.objects.get(contrato=contrato)
+                        except ResourceModel.DoesNotExist:
+                            # Si no existe (porque se eliminó o nunca se creó), lo creamos con defaults.
+                            new_resource = ResourceModel(contrato=contrato)
+                            new_resource.save()
+                            
+                    # 7. Redirección al detalle del contrato editado
+                    return redirect('contratos:detalle_contrato', pk=contrato.pk)
+
+            except Exception as e:
+                print(f"Error al actualizar la transacción: {e}") 
+                # Continúa al renderizado con errores
+
+    # 8. Contexto para renderizar la plantilla (si es GET o POST fallido)
+    context = {
+        'form': form,
+        'cableoperador': contrato_instance.cableoperador, 
+        'cable_formset': formsets['cable'],
+        'caja_empalme_formset': formsets['caja'],
+        'reserva_formset': formsets['reserva'],
+        'nap_formset': formsets['nap'],
+        'titulo': f"Editar Contrato y Usos: {contrato_instance.cableoperador.nombre}",
     }
-    return render(request, 'contratos/detalle_contrato.html', context)
+    # Se recomienda usar la misma plantilla (crear_contrato.html) para edición
+    return render(request, 'contratos/crear_contrato.html', context)

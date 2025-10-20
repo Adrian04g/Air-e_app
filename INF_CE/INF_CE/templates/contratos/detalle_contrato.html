@@ -34,9 +34,13 @@
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4">
             
             <!-- Columna Cableoperador -->
-            <div class="col-span-2 md:col-span-4 lg:col-span-1">
+            <div>
                 <p class="data-label"style="font-weight: 700;">Cableoperador</p>
                 <p class="data-value">{{ contrato.cableoperador.nombre }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Ejecutiva Responsable</p>
+                <p class="data-value">{{ contrato.cableoperador.ejecutiva.first_name }} {{ contrato.cableoperador.ejecutiva.last_name }}</p>
             </div>
 
             <!-- Otras Columnas -->
@@ -66,10 +70,6 @@
                 <p class="data-value">{{ contrato.duracion_anos }}</p>
             </div>
             <div>
-                <p class="data-label"style="font-weight: 700;">Garantía</p>
-                <p class="data-value">{{ contrato.Garantia }}</p>
-            </div>
-            <div>
                 <p class="data-label"style="font-weight: 700;">Fecha de radicación</p>
                 <p class="data-value">{{ contrato.fecha_radicacion }}</p>
             </div>
@@ -77,6 +77,130 @@
                 <p class="data-label"style="font-weight: 700;">Tipo fecha de radicación</p>
                 <p class="data-value">{{ contrato.tipo_fecha_radicacion }}</p>
             </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">TOMADOR</p>
+                <p class="data-value">{{ contrato.tomador }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Aseguradora</p>
+                <p class="data-value">{{ contrato.aseguradora }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fecha radicación</p>
+                <p class="data-value">{{ contrato.fecha_radicacion }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Tipo fecha de radicación</p>
+                <p class="data-value">{{ contrato.tipo_fecha_radicacion }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fecha de preliquidación</p>
+                <p class="data-value">{{ contrato.fecha_preliquidacion }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-10">
+        <h2 class="text-2xl font-bold text-indigo-600 mb-6 border-b pb-2 p-3 mb-2 bg-primary-subtle text-emphasis-primary border border-primary">Poliza de cumplimiento</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4">
+            {% if contrato.numero_poliza_cumplimiento %}
+            <div>
+                <p class="data-label"style="font-weight: 700;">Número de póliza de cumplimiento</p>
+                <p class="data-value">{{ contrato.numero_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Vigencia de amparo</p>
+                <p class="data-value">{{ contrato.vigencia_amparo_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Inicio de vigencia</p>
+                <p class="data-value">{{ contrato.inicio_vigencia_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fin de vigencia</p>
+                <p class="data-value">{{ contrato.fin_vigencia_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.monto_asegurado_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.valor_monto_asegurado_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.valor_asegurado_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Inicio de amparo</p>
+                <p class="data-value">{{ contrato.inicio_amparo_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fin de amparo</p>
+                <p class="data-value">{{ contrato.fin_amparo_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Expedicion de poliza de cumplimiento</p>
+                <p class="data-value">{{ contrato.expedicion_poliza_cumplimiento|default:"N/A" }}</p>
+            </div>
+
+            {% else %}
+            <div>
+                <p>No registra poliza de cumplimiento</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card mb-10">
+        <h2 class="text-2xl font-bold text-indigo-600 mb-6 border-b pb-2 p-3 mb-2 bg-primary-subtle text-emphasis-primary border border-primary">Poliza de RCE</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4">
+            {% if contrato.numero_poliza_rce %}
+            <div>
+                <p class="data-label"style="font-weight: 700;">Número de póliza de RCE</p>
+                <p class="data-value">{{ contrato.numero_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Vigencia de amparo</p>
+                <p class="data-value">{{ contrato.vigencia_amparo_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Inicio de vigencia</p>
+                <p class="data-value">{{ contrato.inicio_vigencia_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fin de vigencia</p>
+                <p class="data-value">{{ contrato.fin_vigencia_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.monto_asegurado_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.valor_monto_asegurado_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Monto asegurado</p>
+                <p class="data-value">{{ contrato.valor_asegurado_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Inicio de amparo</p>
+                <p class="data-value">{{ contrato.inicio_amparo_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Fin de amparo</p>
+                <p class="data-value">{{ contrato.fin_amparo_poliza_rce|default:"N/A" }}</p>
+            </div>
+            <div>
+                <p class="data-label"style="font-weight: 700;">Expedicion de poliza de RCE</p>
+                <p class="data-value">{{ contrato.expedicion_poliza_rce|default:"N/A" }}</p>
+            </div>
+
+            {% else %}
+            <div>
+                <p>No registra poliza de RCE</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 
@@ -163,11 +287,11 @@
 
         <div class="mt-8 pt-4 border-t border-gray-200 flex justify-end space-x-4">
                 <!-- Botones de CRUD Adicionales (Ejemplo) -->
-                <a href="#" class="px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition duration-150">
-                    Editar Contrato
+                <a href="{% url 'contratos:actualizar_contrato' pk=contrato.pk %}" class="btn btn-warning">
+                Editar Contrato
                 </a>
-                <a href="#" class="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition duration-150">
-                Eliminar Contrato
+                <a href="#" class="btn btn-danger">
+                    Eliminar Contrato
                 </a>
         </div>
 
