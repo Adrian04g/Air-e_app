@@ -7,16 +7,17 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: rgb(85, 241, 255);
+   background-color: rgb(113, 251, 226);
     border-radius: 5px;
     margin-bottom: 15px;
     display: block;
     font-weight: 500;
-    border: 2px solid #d591f2;
+     border: 2px solid #9c59db;
     padding-left: 15px;
     border-bottom-width: 2px;
     ;
     transition: all 0.3s ease;
+    text-align: center;
 
 }
 
@@ -26,7 +27,7 @@
     font-weight: 700;
     color: rgb(73, 63, 91);
     margin-bottom: 20px;
-    text-align: center;
+    text-aling:center;
 }
 
 .poliza {
@@ -38,16 +39,17 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: rgb(96, 235, 247);
+   background-color: rgb(113, 251, 226);
     border-radius: 5px;
     margin-bottom: 15px;
     display: block;
     font-weight: 500;
-    border: 2px solid #d477ff;
+    border: 2px solid #9c59db;
     padding-left: 15px;
     border-bottom-width: 2px;
     ;
     transition: all 0.3s ease;
+    text-align:center;
 }
 
 /* .poliza{
