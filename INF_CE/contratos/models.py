@@ -1,6 +1,5 @@
 from django.db import models
 from indexapp.models import Cableoperadores
-from django.db.models import Q, UniqueConstraint
 from django.core.exceptions import ValidationError
 # Create your models here.
 class Cable(models.Model):
