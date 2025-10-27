@@ -20,10 +20,10 @@
         {{ form.media }}
         
         <!-- SECCIÓN 1: DATOS GENERALES DEL CONTRATO -->
-        <div class="container mt-4 ">
+        <div class="container mt-4">
             <h2 class="poliza">Información General del Contrato</h2>
             <div class="row g-3">
-                <div class="col-md-4 campos">
+                <div class="col-md-3 campos">
                 {% if nombre_cableoperador %}
                 <label class="" style="font-weight: 700;">Cableoperador : {{ nombre_cableoperador }}</label>
                 {% else %}
@@ -39,7 +39,7 @@
                 {% endif %}
                 </div>
 
-                <div class="col-md-4 campos">
+                <div class="col-md-3 campos">
                     {% with field=form.tipo_contrato %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -50,7 +50,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 campos">
+                <div class="col-md-3  campos">
                     {% with field=form.estado_contrato %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -61,7 +61,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 campos">
+                <div class="col-md-2 campos">
                     {% with field=form.duracion_anos %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -72,7 +72,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 campos">
+                <div class="col-md-3 campos">
                     {% with field=form.inicio_vigencia %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -107,7 +107,7 @@
                 <div style="border: 5px solid black;" class="row">
                     <div class="col-12 text- poliza"><h2>Poliza de cumplimiento</h2></div>
                     {% endwith %}
-                    <div class="col-md-2 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.numero_poliza_cumplimiento %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -140,7 +140,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-2 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.fin_vigencia_poliza_cumplimiento %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -173,7 +173,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-2 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.valor_asegurado_poliza_cumplimiento %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -184,7 +184,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-4 poliza">
+                    <div class="col-md-2 poliza">
                         {% with field=form.inicio_amparo_poliza_cumplimiento %}
                         <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -195,7 +195,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-4 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.fin_amparo_poliza_cumplimiento %}
                         <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -206,7 +206,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-2 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.expedicion_poliza_cumplimiento %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -220,7 +220,7 @@
                 </div>
                 <div style="border: 5px solid black;" class="row">
                     <div class="col-12 text-black poliza"><h2>Poliza de RCE</h2></div>
-                    <div class="col-md-2 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.numero_poliza_rce %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -264,7 +264,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-4 poliza">
+                    <div class="col-md-3 poliza">
                         {% with field=form.monto_asegurado_poliza_rce %}
                         <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -319,7 +319,7 @@
                             {% endif %}
                     </div>
                     {% endwith %}
-                    <div class="col-md-2 poliza ">
+                    <div class="col-md-3 poliza ">
                         {% with field=form.expedicion_poliza_rce %}
                         <label class="flex-grow-1" for="{{ field.id_for_label }}" style="font-weight: 700;">
                             {{ field.label }}
@@ -331,7 +331,7 @@
                     </div>
                     {% endwith %}
                 </div>
-                <div class="col-md-4 poliza">
+                <div class="col-md-2 poliza">
                     {% with field=form.tomador %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -342,7 +342,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 poliza">
+                <div class="col-md-3 poliza">
                     {% with field=form.aseguradora %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -353,7 +353,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 poliza">
+                <div class="col-md-3 poliza">
                     {% with field=form.fecha_radicacion %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
@@ -364,7 +364,7 @@
                         {% endif %}
                 </div>
                 {% endwith %}
-                <div class="col-md-4 poliza">
+                <div class="col-md-3 poliza">
                     {% with field=form.tipo_fecha_radicacion %}
                     <label class="" for="{{ field.id_for_label }}" style="font-weight: 700;">
                         {{ field.label }}
