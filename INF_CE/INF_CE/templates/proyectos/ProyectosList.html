@@ -33,8 +33,8 @@
     </div>
 
     <!-- Vista de tabla para desktop -->
-    <div class="table-container d-none d-md-block">
-        <table class="table table-striped">
+    <div class="table-container d-none d-md-block border border-success border-3">
+        <table class="table table-striped bg-body text-body border border-primary">
             <thead>
                 <tr>
                     <th scope="col" class="border border-info p-2 mb-2 bg-primary-subtle text-primary-emphasis">Proyecto</th>
@@ -100,7 +100,7 @@
     <div class="d-block d-md-none">
     {% for object in object_list %}
         <div class="card mb-3 shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-primary text-white ">
                 <h6 class="mb-0">
                     <strong>{{ object.nombre }}</strong>
                 </h6>
